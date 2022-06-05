@@ -170,7 +170,7 @@ export default {
 </script>
 
 <style>
-#threejsContainer {
+#threejs-container {
 	width: 50%;
 	height: 50%;
 	display: block;
