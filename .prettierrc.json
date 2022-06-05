@@ -1,9 +1,20 @@
 {
-	"tabWidth": 2,
-	"useTabs": true,
-	"printWidth": 80,
-	"semi": true,
-	"trailingComma": "es5",
-	"jsxSingleQuote": true,
-	"singleQuote": true
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": true,
+    "arrowParens": "always",
+    "vueIndentScriptAndStyle": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "SimonSiefke.prettier-vscode",
+
+    "overrides": [
+        {
+            "files": ["*.vue", "*.stories.js"],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
 }
