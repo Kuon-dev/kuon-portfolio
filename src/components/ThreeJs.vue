@@ -1,8 +1,10 @@
 <template>
-	<div class="divCenter pt-20 8xl:ml-[-70rem] 7xl:ml-[-55rem] 6xl:ml-[-20rem] 5xl:ml-[-10rem] 4xl:ml-[-5rem] 3xl:ml-[-2rem] xl:mr-[40rem] lg:mr-[27rem] md:mr-[15rem] sm:ml-[0rem] ml-[4rem] flex flex-col w-full">
-	<!-- <div id="loading" class="divCenter w-full mt-[15rem] animate-spin"></div> -->
-	<div id="threejsContainer" class="mr-[10rem] 2xl:mr-[20rem] hidden"></div>
-</div>
+	<div
+		class="divCenter pt-20 8xl:ml-[-70rem] 7xl:ml-[-55rem] 6xl:ml-[-20rem] 5xl:ml-[-10rem] 4xl:ml-[-5rem] 3xl:ml-[-2rem] xl:mr-[40rem] lg:mr-[27rem] md:mr-[15rem] sm:ml-[0rem] ml-[4rem] flex flex-col w-full"
+	>
+		<!-- <div id="loading" class="divCenter w-full mt-[15rem] animate-spin"></div> -->
+		<div id="threejsContainer" class="mr-[10rem] 2xl:mr-[20rem] hidden"></div>
+	</div>
 </template>
 
 <script>
@@ -15,23 +17,23 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 export default {
 	methods: {
 		// prompt resize on reload
-		ThreeJS_resize () {
-      const width = window.innerWidth/2;
-      const height = window.innerHeight/2;
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize( width, height );
-		}
+		ThreeJS_resize() {
+			const width = window.innerWidth / 2;
+			const height = window.innerHeight / 2;
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(width, height);
+		},
 	},
-	mounted(){
-    let isInDesktop = window.innerWidth > 1148
-    const userPlatform = (platform) => {
-        return (platform ? 5 : 3)
-    }
+	mounted() {
+		let isInDesktop = window.innerWidth > 1148;
+		const userPlatform = (platform) => {
+			return platform ? 5 : 3;
+		};
 
-    	//const scene = new THREE.Scene();
+		//const scene = new THREE.Scene();
 		// const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-		const camera = new THREE.PerspectiveCamera( 75, 2, 0.1, 1000 );
+		const camera = new THREE.PerspectiveCamera(75, 2, 0.1, 1000);
 		camera.position.x = 30;
 		camera.position.y = 20;
 		camera.position.z = 30;
@@ -40,99 +42,112 @@ export default {
 		// const dracoLoader = new DRACOLoader();
 		// dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
 
-		const loader = new GLTFLoader()
+		const loader = new GLTFLoader();
 		// loader.setDRACOLoader( dracoLoader );
-		loader.load( ' ./web/source/laptop.glb', function ( gltf ) {
-		// loader.load( './src/assets/room/scene.gltf', function ( gltf ) {
-			const model = gltf.scene;
-      
-			// position the model from the camera
-			model.position.set( 0, 0, 6 );
-			model.scale.set( userPlatform(isInDesktop), userPlatform(isInDesktop), userPlatform(isInDesktop) ); //model size
-			model.castShadow = true;
-			scene.add( model );
+		loader.load(
+			' ./web/source/laptop.glb',
+			function (gltf) {
+				// loader.load( './src/assets/room/scene.gltf', function ( gltf ) {
+				const model = gltf.scene;
 
-		}, undefined, function ( error ) {
-			console.error( error );
-		} );
+				// position the model from the camera
+				model.position.set(0, 0, 6);
+				model.scale.set(
+					userPlatform(isInDesktop),
+					userPlatform(isInDesktop),
+					userPlatform(isInDesktop)
+				); //model size
+				model.castShadow = true;
+				scene.add(model);
+			},
+			undefined,
+			function (error) {
+				console.error(error);
+			}
+		);
 
 		// const renderer = new THREE.WebGLRenderer();
 		// renderer.setSize( window.innerWidth, window.innerHeight );
 
 		// add to HTML viewer
 		// const container = document.body;
-		const container = document.getElementById( 'threejsContainer' );
+		const container = document.getElementById('threejsContainer');
 		//container.appendChild( renderer.domElement ); // may need to change to append this on the right element
 
 		// three js renderer and size on the element
-		const renderer = new THREE.WebGLRenderer( { antialias: true }, { alpha: true }  );
-			renderer.setPixelRatio( window.devicePixelRatio );
-			// renderer.setSize( window.innerWidth, window.innerHeight );
-			renderer.outputEncoding = THREE.sRGBEncoding;
-			renderer.setSize( 450, 450/2) // size
-			renderer.shadowMap.enabled = true;
-			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-			container.appendChild( renderer.domElement );
-			renderer.setClearColor( 0x000000, 0 ); // set transparent bg
+		const renderer = new THREE.WebGLRenderer(
+			{ antialias: true },
+			{ alpha: true }
+		);
+		renderer.setPixelRatio(window.devicePixelRatio);
+		// renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.outputEncoding = THREE.sRGBEncoding;
+		renderer.setSize(450, 450 / 2); // size
+		renderer.shadowMap.enabled = true;
+		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+		container.appendChild(renderer.domElement);
+		renderer.setClearColor(0x000000, 0); // set transparent bg
 
 		// attempt to add sadows
-		const pmremGenerator = new THREE.PMREMGenerator( renderer );
+		const pmremGenerator = new THREE.PMREMGenerator(renderer);
 
-			const scene = new THREE.Scene();
-			// scene.background = new THREE.Color( 0xbfe3dd );
-			scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 1 ).texture;
+		const scene = new THREE.Scene();
+		// scene.background = new THREE.Color( 0xbfe3dd );
+		scene.environment = pmremGenerator.fromScene(
+			new RoomEnvironment(),
+			1
+		).texture;
 
 		// lightning and casting shadows
-		const light = new THREE.DirectionalLight( 0x404040, 1); // soft white light
-			light.position.set(15, 20, 0);
-			light.target.position.set(0, 0, 0);
-			light.castShadow = true;
+		const light = new THREE.DirectionalLight(0x404040, 1); // soft white light
+		light.position.set(15, 20, 0);
+		light.target.position.set(0, 0, 0);
+		light.castShadow = true;
 
-			light.shadow.mapSize.width = 512; // default
-			light.shadow.mapSize.height = 512; // default
-			// light.shadowCameraLeft = -30;
-			// light.shadowCameraRight = 30;
-			// light.shadowCameraTop = 35;
-			// light.shadowCameraBottom = -30;
-			scene.add( light );
-			scene.add( light.target )
+		light.shadow.mapSize.width = 512; // default
+		light.shadow.mapSize.height = 512; // default
+		// light.shadowCameraLeft = -30;
+		// light.shadowCameraRight = 30;
+		// light.shadowCameraTop = 35;
+		// light.shadowCameraBottom = -30;
+		scene.add(light);
+		scene.add(light.target);
 
 		// helpers
-		const controls = new OrbitControls(camera, renderer.domElement) // allow users to view around the model
-			// controls.enablePan = false;
-			controls.enableDamping = true; // adds a physic effect of "inertia" when spinning camera
-			controls.maxPolarAngle = (Math.PI/2) - 0.3; // don't let user view below the ground, 0.3 is slightly above the base level
-			controls.minDistance = 10; // don't let user zoom too close
-			controls.maxDistance = 50;  // don't let user zoom too far away
+		const controls = new OrbitControls(camera, renderer.domElement); // allow users to view around the model
+		// controls.enablePan = false;
+		controls.enableDamping = true; // adds a physic effect of "inertia" when spinning camera
+		controls.maxPolarAngle = Math.PI / 2 - 0.3; // don't let user view below the ground, 0.3 is slightly above the base level
+		controls.minDistance = 10; // don't let user zoom too close
+		controls.maxDistance = 50; // don't let user zoom too far away
 
-			controls.enableRotate = true;
-			controls.rotateSpeed = 0.3; // set rotation speed of the mouse
+		controls.enableRotate = true;
+		controls.rotateSpeed = 0.3; // set rotation speed of the mouse
 
-			controls.autoRotate = true; // auto rotate
-			controls.autoRotateSpeed = 1.5; // 30 seconds per orbit when fps is 60
+		controls.autoRotate = true; // auto rotate
+		controls.autoRotateSpeed = 1.5; // 30 seconds per orbit when fps is 60
 
 		// grid helper
-		const gridHelper = new THREE.GridHelper(200, 50) // add a grid 
+		const gridHelper = new THREE.GridHelper(200, 50); // add a grid
 		// light helper
-		const helper = new THREE.DirectionalLightHelper( light, 5 );
+		const helper = new THREE.DirectionalLightHelper(light, 5);
 		// scene.add( gridHelper );
 		// scene.add( helper );
-		
+
 		function animate() {
-			requestAnimationFrame( animate );
+			requestAnimationFrame(animate);
 
 			// cube.rotation.x += 0.01;
-			
-			const width = window.innerWidth/2;
-			const height = window.innerHeight/2;
+
+			const width = window.innerWidth / 2;
+			const height = window.innerHeight / 2;
 			camera.aspect = window.innerWidth / window.innerHeight;
 			camera.updateProjectionMatrix();
-			renderer.setSize( width, height );
-			
+			renderer.setSize(width, height);
 
 			controls.update();
-			renderer.render( scene, camera );
-		};
+			renderer.render(scene, camera);
+		}
 		animate();
 
 		// setup loading page
@@ -140,7 +155,7 @@ export default {
 		// 	var state = document.readyState
 		// 	if (state == 'interactive') {
 		// 		document.getElementById('threejsContainer').classList.add(hidden);
-		// 	} 
+		// 	}
 		// 	else if (state == 'complete') {
 		// 		setTimeout(function(){
 		// 			// document.getElementById('interactive');
@@ -150,9 +165,8 @@ export default {
 		// 		50);
 		// 	}
 		// };
-		
-  	}
-}
+	},
+};
 </script>
 
 <style>
@@ -163,12 +177,11 @@ export default {
 }
 
 #loading {
-  border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 10px solid var(--text); /* Blue */
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 1s linear infinite;
-
+	border: 10px solid #f3f3f3; /* Light grey */
+	border-top: 10px solid var(--text); /* Blue */
+	border-radius: 50%;
+	width: 80px;
+	height: 80px;
+	animation: spin 1s linear infinite;
 }
 </style>

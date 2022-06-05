@@ -1,24 +1,17 @@
-<template>
-</template>
+<template></template>
 
 <script>
 export default {
-    data() {
-        return {
-            userinfo: {
-                username: ""
-            }
-        }
-    },
-    methods: {
-
-    },
-    mounted(){
-        
-    }
-}
+	data() {
+		return {
+			userinfo: {
+				username: '',
+			},
+		};
+	},
+	methods: {},
+	mounted() {},
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
