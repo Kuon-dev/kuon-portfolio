@@ -6,7 +6,8 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "eslint": "eslint --fix"
     },
     "dependencies": {
         "animate.css": "^4.1.1",
