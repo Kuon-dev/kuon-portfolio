@@ -35,11 +35,6 @@
         "tailwindcss": "^3.0.24",
         "vite": "^2.9.5"
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "lint-staged": {
         "*.{js,jsx,vue}": [
             "prettier --write",
