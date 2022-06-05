@@ -135,7 +135,6 @@ export default {
 		})
 			.type('Here are a list of my personal projects!')
 			.go();
-
 	},
 };
 </script>

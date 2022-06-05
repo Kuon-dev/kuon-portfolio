@@ -169,13 +169,13 @@ export default {
 			var filter_contents = filter_contents.replaceAll('&gt;', '>');
 			var dom = document.createElement('div');
 			dom.innerHTML = filter_contents;
-			dom.classList.add('rendered_contents');
+			dom.classList.add('rendered-contents');
 			document.getElementById('render').appendChild(dom);
 		};
 
 		const animate_out = () => {
-			var con = document.querySelector('.rendered_contents');
-			con.classList.replace('rendered_contents', 'rem_rendered_contents');
+			var con = document.querySelector('.rendered-contents');
+			con.classList.replace('rendered-contents', 'rem-rendered-contents');
 		};
 
 		new TypeIt('#demo', {
@@ -190,31 +190,31 @@ export default {
 			// }
 		})
 			.type('<', { speed: 30 })
-			.type("div class='flex lg:flex-row flex-col'>")
+			.type('div class=\'flex lg:flex-row flex-col\'>')
 			.break()
 			.type('   <')
-			.type("div class='flex flex-row gap-4'>")
+			.type('div class=\'flex flex-row gap-4\'>')
 			.break()
 			.type('      <')
-			.type("div class='bg-sky-600 px-2'>1<")
+			.type('div class=\'bg-sky-600 px-2\'>1<')
 			.type('/div>')
 			.break()
 			.type('      <')
-			.type("div class='bg-rose-600 px-2'>2<")
-			.type('/div>')
-			.break()
-			.type('   <')
+			.type('div class=\'bg-rose-600 px-2\'>2<')
 			.type('/div>')
 			.break()
 			.type('   <')
-			.type("div class='flex flex-row gap-4'>")
+			.type('/div>')
+			.break()
+			.type('   <')
+			.type('div class=\'flex flex-row gap-4\'>')
 			.break()
 			.type('      <')
-			.type("div class='bg-lime-600 px-2'>1<")
+			.type('div class=\'bg-lime-600 px-2\'>1<')
 			.type('/div>')
 			.break()
 			.type('      <')
-			.type("div class='bg-teal-600 px-2'>2<")
+			.type('div class=\'bg-teal-600 px-2\'>2<')
 			.type('/div>')
 			.break()
 			.type('   <')
@@ -237,7 +237,7 @@ export default {
 			.type('/lable>')
 			.break()
 			.type('<')
-			.type("input placeholder='email' class='p-1 px-3 w-20'>", { speed: 50 })
+			.type('input placeholder=\'email\' class=\'p-1 px-3 w-20\'>', { speed: 50 })
 			.pause(2000)
 			.exec(async () => {
 				await new Promise((resolve, reject) => {
@@ -267,12 +267,12 @@ export default {
 	@apply w-20 rounded-lg border-2 border-pink-500;
 }
 
-.rendered_contents * {
+.rendered-contents * {
 	animation: fadeIn;
 	animation-duration: 1s;
 }
 
-.rem_rendered_contents * {
+.rem-rendered-contents * {
 	animation: fadeOut;
 	animation-duration: 1s;
 }
