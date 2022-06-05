@@ -40,11 +40,10 @@
 			"pre-commit": "lint-staged"
 		}
 	},
-	"lint-staged": {
-		"*.{js,jsx,vue}": [
-			"prettier --write",
-			"eslint --fix",
-			"git add"
-		]
-	}
+  "lint-staged":{
+    "**/*.{js,jsx,ts,tsx}":[
+      "npx prettier --write",
+      "npx eslint --fix"
+    ]
+  }
 }
