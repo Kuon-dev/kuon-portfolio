@@ -38,8 +38,8 @@
         <!-- select theme icon -->
         <button class="border-2 rounded-lg p-[0.35rem] svg_border">
           <img
-            src="../../assets/theme.svg"
-            class="svgColor inline"
+            :src="svgSource"
+            class="svgColor inline min-w-[30px] min-h-[30px]"
             width="30px"
             height="30px"
           />
@@ -86,7 +86,7 @@
           <!-- select theme icon -->
           <button class="border-2 rounded-md p-[0.35rem] svg_border">
             <img
-              src="../../assets/theme.svg"
+              :src="svgSource"
               class="svgColor inline min-w-[25px] min-h-[25px]"
               width="20px"
               height="20px"
@@ -164,6 +164,12 @@
 import anime from 'animejs/lib/anime.es.js';
 
 export default {
+  data(){
+    return {
+      "svgSource": "./assets/theme.svg"
+    }
+  },
+
 	methods: {
 		Scroll_Top() {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
