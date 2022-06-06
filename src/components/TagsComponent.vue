@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div :bind="tagSettings"></div>
 </template>
 
 <script>

@@ -1,10 +1,10 @@
 <template>
-	<div
-		class="divCenter pt-20 8xl:ml-[-70rem] 7xl:ml-[-55rem] 6xl:ml-[-20rem] 5xl:ml-[-10rem] 4xl:ml-[-5rem] 3xl:ml-[-2rem] xl:mr-[40rem] lg:mr-[27rem] md:mr-[15rem] sm:ml-[0rem] ml-[4rem] flex flex-col w-full"
-	>
-		<!-- <div id="loading" class="divCenter w-full mt-[15rem] animate-spin"></div> -->
-		<div id="threejsContainer" class="mr-[10rem] 2xl:mr-[20rem] hidden"></div>
-	</div>
+  <div
+    class="divCenter pt-20 8xl:ml-[-70rem] 7xl:ml-[-55rem] 6xl:ml-[-20rem] 5xl:ml-[-10rem] 4xl:ml-[-5rem] 3xl:ml-[-2rem] xl:mr-[40rem] lg:mr-[27rem] md:mr-[15rem] sm:ml-[0rem] ml-[4rem] flex flex-col w-full"
+  >
+    <!-- <div id="loading" class="divCenter w-full mt-[15rem] animate-spin"></div> -->
+    <div id="threejs-container" class="mr-[10rem] 2xl:mr-[20rem] hidden"></div>
+  </div>
 </template>
 
 <script>
@@ -71,7 +71,7 @@ export default {
 
 		// add to HTML viewer
 		// const container = document.body;
-		const container = document.getElementById('threejsContainer');
+		const container = document.getElementById('threejs-container');
 		//container.appendChild( renderer.domElement ); // may need to change to append this on the right element
 
 		// three js renderer and size on the element
@@ -134,7 +134,7 @@ export default {
 		// scene.add( gridHelper );
 		// scene.add( helper );
 
-		function animate() {
+		const animate = () => {
 			requestAnimationFrame(animate);
 
 			// cube.rotation.x += 0.01;
@@ -147,7 +147,7 @@ export default {
 
 			controls.update();
 			renderer.render(scene, camera);
-		}
+		};
 		animate();
 
 		// setup loading page
@@ -171,17 +171,17 @@ export default {
 
 <style>
 #threejs-container {
-	width: 50%;
-	height: 50%;
-	display: block;
+  width: 50%;
+  height: 50%;
+  display: block;
 }
 
 #loading {
-	border: 10px solid #f3f3f3; /* Light grey */
-	border-top: 10px solid var(--text); /* Blue */
-	border-radius: 50%;
-	width: 80px;
-	height: 80px;
-	animation: spin 1s linear infinite;
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid var(--text); /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
 }
 </style>

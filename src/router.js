@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 //import HelloWorld from './components/HelloWorld.vue'
-import Home from './views/landing.vue';
-import Work from './views/works.vue';
-import Skills from './views/skills.vue';
-import contact from './views/contact.vue';
-import notfound from './views/404page.vue';
+import Home from './views/MainLanding.vue';
+import Work from './views/MainWorks.vue';
+import Skills from './views/MainSkills.vue';
+import contact from './views/MainContact.vue';
+import notfound from './views/MainErrorPage.vue';
 
 export default createRouter({
 	history: createWebHistory(),
