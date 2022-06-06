@@ -12,7 +12,7 @@
     </div>
     <br />
     <div class="flex flex-col divCenter pt-5">
-      <!-- works 1 -->
+      <!-- works loop -->
       <div
         class="flex 2xl:flex-row flex-col xl:gap-[3rem] gap-[3rem] 2xl:mb-[5rem] mb-[3rem]"
         v-for="(value, index) in worksData"
@@ -26,17 +26,17 @@
         <div class="xl:max-w-[40rem] w-auto rounded-lg border-2">
           <img :src="value.Image" class="bg-auto bg-center rounded-md" />
         </div>
-        <div class="2xl:pt-2">
+        <div class="2xl:pt-2 xl:max-w-[40rem]">
           <h2
             class="lg:text-xl text-lg font-bold underline underline-offset-8 decoration-2"
           >
             {{ value.Title }}
           </h2>
-          <p class="lg:text-md text-sm text-justify leading-6 py-2 2xl:py-5">
+          <p class="lg:text-lg text-sm text-justify leading-6 py-2 2xl:py-5">
             {{ value.Description }}
           </p>
           <p
-            class="lg:text-md text-sm text-justify leading-6 2xl:py-10 py-3"
+            class="lg:text-lg text-sm text-justify leading-6 2xl:py-2 py-3"
             v-if="value.Sidenote !== ''"
           >
             {{ value.Sidenote }}
@@ -45,13 +45,13 @@
           <strong
             ><a :href="value.Github">View this project on Github</a>
           </strong>
-          <div v-if="isInMobile">
+          <TagsComponent :tagSettings="value.Tags"> </TagsComponent>
+          <div v-if="isInMobile" class="mt-3">
             <br />
             <hr
               v-show="index !== indexMaxLength"
               style="border-color: var(--text-highlight)"
             />
-            <br />
           </div>
         </div>
       </div>
@@ -62,8 +62,12 @@
 <script>
 import TypeIt from 'typeit';
 import Works from '../components/MainWorksContent.json';
+import TagsComponent from '../components/TagsComponent.vue';
 
 export default {
+	components: {
+		TagsComponent,
+	},
 	data() {
 		return {
 			worksData: Works,
@@ -90,13 +94,6 @@ export default {
 		if (window.innerWidth < 1536) {
 			this.isInMobile = true;
 		}
-	},
-
-	setup() {
-		const worksData = Works;
-		for (let i = 0; i < worksData.length; i++) {}
-
-		return {};
 	},
 };
 </script>

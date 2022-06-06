@@ -1,18 +1,25 @@
 <template>
-  <div :bind="tagSettings"></div>
+  <div class="mt-5">
+    <ul class="flex flex-row gap-5 flex-wrap">
+      <li
+        v-for="(value, index) in tagSettings"
+        :key="index"
+        class="lg:text-md text-sm text-center selector rounded-md xl:p-3 xl:px-4 p-2 px-3"
+      >
+        {{ value }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
+	name: 'TagsComponent',
 	props: {
 		tagSettings: {
 			type: Array,
 			required: false,
 		},
-	},
-
-	mounted() {
-		console.log(tagSettings);
 	},
 };
 </script>
