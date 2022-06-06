@@ -1,0 +1,26 @@
+[
+    {
+        "Image": "./assets/images/work1.png",
+        "Title": "Shopify Clone",
+        "Description": "Shopify is a popular E-commerce website that allows the user to setup an online store and sell their products. This project clones the basic functionalities of shopify such as user interface, user authentication functionalities, along with adding products to database ",
+        "Sidenote": "This is Aaron's first project developed in Vue3 and Laravel",
+        "Github": "https://github.com/Kuon-dev/Shopify-Clone",
+        "Tags": ["Vue3", "Laravel", "PHP", "MySQL", "TailwindCSS"]
+    },
+    {
+        "Image": "./assets/images/work2.png",
+        "Title": "Mersing Website with Chatbot",
+        "Description": "Mersing is a tourism spot located in West Malaysia, the purpose of this website is to boost the tourism industry of this location by making a AI Chatbot powered by Microsoft Virtual Agent ",
+        "Sidenote": "",
+        "Github": "https://github.com/Kuon-dev/IaI-project",
+        "Tags": ["Vue3", "TailwindCSS", "Microsoft Virtual Agent", "API"]
+    },
+    {
+        "Image": "./assets/images/work3.png",
+        "Title": "Paws Heaven E-commerce Website",
+        "Description": "Paws Heaven is an online E-commerce website developed by a team of 3 developers. Paws Heaven offers a variety of pet products such as food, vitamins and cages ",
+        "Sidenote": "",
+        "Github": "https://github.com/Kuon-dev/WDT-assignment",
+        "Tags": ["PHP", "HTML5", "CSS3", "MYSQL"]
+    }
+]
