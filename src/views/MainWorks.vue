@@ -23,16 +23,21 @@
             : null
         "
       >
-        <div class="xl:max-w-[40rem] w-auto rounded-lg border-2">
-          <img :src="value.Image" class="bg-auto bg-center rounded-md" />
+        <div class="xl:max-w-[40rem] w-auto">
+          <img
+            :src="value.Image"
+            class="bg-auto bg-center rounded-md border-2"
+          />
+          <TagsComponent :tagSettings="value.Tags" />
         </div>
+
         <div class="2xl:pt-2 xl:max-w-[40rem]">
           <h2
-            class="lg:text-xl text-lg font-bold underline underline-offset-8 decoration-2"
+            class="lg:text-xl text-lg font-bold underline underline-offset-8 decoration-4 whitespace-nowrap"
           >
             {{ value.Title }}
           </h2>
-          <p class="lg:text-lg text-sm text-justify leading-6 py-2 2xl:py-5">
+          <p class="lg:text-lg text-sm text-justify py-2 2xl:py-5">
             {{ value.Description }}
           </p>
           <p
@@ -42,10 +47,9 @@
             {{ value.Sidenote }}
           </p>
           <br />
-          <strong
+          <strong class="decoration-2 underline"
             ><a :href="value.Github">View this project on Github</a>
           </strong>
-          <TagsComponent :tagSettings="value.Tags"> </TagsComponent>
           <div v-if="isInMobile" class="mt-3">
             <br />
             <hr

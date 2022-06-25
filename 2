@@ -3,45 +3,59 @@ import ThreeJS from './components/ThreeJs.vue';
 import Navbar from './components/MainNavbar.vue';
 import 'animate.css';
 import { ref, onMounted, computed } from 'vue';
+
 </script>
 
 <script>
 export default {
-	data() {
+	data(){
 		return {
 			currentRoute: null,
 			windowWidth: window.innerWidth,
 			paddingValue: 0,
-			setRoutingResizeDelay: false,
 		};
 	},
 
 	mounted() {
+		this.onRouteChange(1);
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.onResize);
 		});
 		this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+
 	},
 
-	beforeDestroy() {
-		window.removeEventListener('resize', this.onResize);
+	beforeDestroy() { 
+		window.removeEventListener('resize', this.onResize); 
 	},
 
 	watch: {
 		windowWidth() {
 			if (this.windowWidth > 1280) {
-				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
-			} else if (this.windowWidth < 1280) {
+				this.paddingValue = Math.trunc(this.windowWidth - 1280 ) / 2;
+			}
+			else if (this.windowWidth < 1280) {
 				this.paddingValue = 0;
 			}
 		},
+		$route (to, from){
+			console.log('test');
+			this.onRouteChange(2000);
+		}
 	},
 
-	methods: {
+	methods: {  
 		onResize() {
 			this.windowWidth = window.innerWidth;
 		},
-	},
+
+		onRouteChange(time){
+			const getCurrentRoute = computed(() => { return this.$route.name; });
+			this.currentRoute = getCurrentRoute;
+			return (this.currentRoute === 'work' && this.windowWidth > 1280) ? null : {'padding-left': this.paddingValue + 'px', 'padding-right': this.paddingValue + 'px'};
+
+		}
+	}
 };
 </script>
 
@@ -52,21 +66,14 @@ export default {
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
     >
-      <Navbar />
+      <Navbar/>
       <ThreeJS />
-      <div
-        class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter px-5 sm:px-0"
-        :style="
-          this.windowWidth < 1280
-            ? null
-            : {
-                'padding-left': this.paddingValue - 50 + 'px',
-                'padding-right': this.paddingValue - 50 + 'px',
-              }
-        "
+      <div 
+        class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter " 
+        :style="onRouteChange(100)"
       >
         <!-- contents -->
-        <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component }" >
           <transition
             mode="out-in"
             enter-active-class="animate__animated animate__fadeInUp animate__fast"
