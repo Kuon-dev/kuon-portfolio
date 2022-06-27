@@ -10,15 +10,14 @@ export default {
 	data() {
 		return {
 			currentRoute: null,
-			windowWidth: null,
+			windowWidth: window.innerWidth,
+      setWindowWidth: '',
 			paddingValue: 0,
 			setRoutingResizeDelay: false,
 		};
 	},
 
 	mounted() {
-    this.windowWidth = window.innerWidth
-    console.log(this.windowWidth)
     const setResponsive = setTimeout(()=> this.setDefaultPadding(), 300) 
 
 		this.$nextTick(() => {
@@ -33,10 +32,10 @@ export default {
 
 	watch: {
 		windowWidth() {
-			if (this?.windowWidth > 1280) {
-				this.paddingValue = Math.trunc(this?.windowWidth - 1280) / 2;
+			if (this.windowWidth > 1280) {
+				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
 				if (this.paddingValue > 400) this.paddingvalue = 400;
-			} else if (this?.windowWidth < 1280) {
+			} else if (this.windowWidth < 1280) {
 				this.paddingValue = 0;
 			}
 		},
@@ -47,7 +46,9 @@ export default {
 			this.windowWidth = window.innerWidth;
 		},
     setDefaultPadding: function() {
-			this.paddingValue = Math.trunc(this?.windowWidth - 1280) / 2;
+			this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+      console.log(this.windowWidth)
+      console.log(this.paddingValue)
 			if (this.paddingValue > 400) this.paddingValue = 400;
 		},
 
