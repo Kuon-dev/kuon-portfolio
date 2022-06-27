@@ -21,142 +21,83 @@
       <h2
         class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
       >
-        Frontend technology
+        My technology
       </h2>
-      <br />
-      <div>
-        <p class="lg:text-lg text-sm text-justify">
-          &nbsp;&nbsp;&nbsp;&nbsp; For the frontend, Aaron is currently focused
-          on <strong>VueJS</strong> as his frontend framework development for
-          frontend and utilizing <strong>TailwindCSS</strong> to style the
-          content.
-        </p>
-      </div>
-      <br />
+      <SkillBarContent />
+
       <!-- auto code block -->
-      <div class="pt-5">
-        <pre
-          id="demo"
-          class="lg:text-md md:text-sm text-[0.6rem] acrlyic selector"
-          ref="textField"
-        />
+
+      <div class="pt-[3.5rem] sm:px-10 transition ease-in-out">
+        <div
+          class="lg:text-md md:text-sm text-[0.6rem] acrlyic selector min-h-[10rem] py-2 px-1 rounded-xl"
+        >
+          <div class="flex flex-row ml-2">
+            <div
+              class="code-block-terminal sm:h-4 h-2 sm:w-4 w-2 bg-rose-500"
+            />
+            <div
+              class="code-block-terminal sm:h-4 h-2 sm:w-4 w-2 bg-yellow-500"
+            />
+            <div
+              class="code-block-terminal sm:h-4 h-2 sm:w-4 w-2 bg-green-500"
+            />
+          </div>
+          <div class="code-block-lines flex h-[0.05rem] w-full" />
+          <div class="flex flex-row mt-3 leading-4 md:leading-6">
+            <!-- number line -->
+            <div>
+              <div
+                v-for="n in 12"
+                :key="n"
+                class="flex flex-col sm:ml-3 text-center"
+              >
+                {{ n }}
+              </div>
+            </div>
+            <!-- vertical line -->
+            <div
+              class="code-block-lines min-h-[10rem] w-[0.05rem] mx-2 sm:mx-3 flex selector leading-4 md:leading-6"
+            />
+            <!-- contents to render -->
+            <pre id="demo" class="px-1" ref="textField" />
+          </div>
+        </div>
+
         <div
           id="render"
-          class="mt-5 acrlyic selector py-10 px-5"
+          class="mt-5 acrlyic selector py-10 px-5 rounded-xl"
           ref="contentRenderer"
-        />
+        ></div>
       </div>
-      <div class="pt-[4rem]">
-        <p class="lg:text-xl text-md text-justify">
-          Other frontend technology includes:
-        </p>
-        <br />
-        <div class="flex sm:flex-row flex-col gap-4">
-          <ul class="basis-1/2 text-sm lg:text-lg md:text-md ml-5 list-disc">
-            <li>ReactJS - <span class="highlight">3 months</span></li>
-            <li>Bootstrap - <span class="highlight">3 months</span></li>
-            <li>Three.js - <span class="highlight">3 months</span></li>
-          </ul>
-          <ul class="basis-1/2 text-sm lg:text-lg md:text-md ml-5 list-disc">
-            <li>HTML - <span class="highlight">3 years</span></li>
-            <li>CSS - <span class="highlight">3 years</span></li>
-            <li>Javascript - <span class="highlight">1 year</span></li>
-          </ul>
-        </div>
-      </div>
-      <br />
-      <!-- backend part -->
-      <section class="pt-10">
-        <h2
-          class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
-        >
-          Backend technology
-        </h2>
-        <br />
-        <div>
-          <p class="lg:text-lg text-sm text-justify">
-            &nbsp;&nbsp;&nbsp;&nbsp; For the backend, Aaron is currently focused
-            on <strong>PHP</strong> development, along with
-            <strong>Laravel</strong> as the MVC framework. He is also more
-            focused on using SQL databases to store data as compared to NoSQL,
-            such as MySQL.
-          </p>
-        </div>
-        <div class="pt-10">
-          <p class="lg:text-xl text-md text-justify">
-            Other backend technology includes:
-          </p>
-          <br />
-          <div class="">
-            <div class="flex sm:flex-row flex-col">
-              <ul
-                class="basis-1/2 text-sm lg:text-lg md:text-md ml-5 list-disc"
-              >
-                <li>Python - <span class="highlight">1 year</span></li>
-                <li>Java - <span class="highlight">3 months</span></li>
-              </ul>
-              <ul
-                class="basis-1/2 text-sm lg:text-lg md:text-md ml-5 list-disc"
-              >
-                <li>Node - <span class="highlight">1 year</span></li>
-                <li>MongoDB - <span class="highlight">3 months</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="pt-10">
-        <h2
-          class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
-        >
-          Tools
-        </h2>
-        <br />
-        <div>
-          <p class="lg:text-lg text-sm text-justify">
-            &nbsp;&nbsp;&nbsp;&nbsp; Other than programming languages or
-            frameworks, Aaron also utilize other tools to assist him on his
-            development. For example, he uses <strong>Github</strong> as his
-            choice of SVC tool, <strong>Markdown</strong> and
-            <strong>Microsoft Office Suite</strong>
-            create documentations.
-          </p>
-        </div>
-        <div class="pt-10">
-          <p class="lg:text-xl text-md text-justify">Other tools:</p>
-          <br />
-          <div class="">
-            <div class="flex sm:flex-row flex-col">
-              <ul
-                class="basis-1/2 text-sm lg:text-lg md:text-md ml-5 list-disc"
-              >
-                <li>Markdown - Documentation</li>
-                <li>Figma - Prototyping</li>
-              </ul>
-              <ul
-                class="basis-1/2 text-sm lg:text-lg md:text-md ml-5 list-disc"
-              >
-                <li>Pixlr - Image editing</li>
-                <li>HitFilm Express - Video editing</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <div>
-      <div></div>
     </div>
   </div>
 </template>
 
 <script>
 import TypeIt from 'typeit';
-import anime from 'animejs/lib/anime.es.js';
 import 'animate.css';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import SkillBarContent from '../components/SkillBarContent.vue';
+import Skills from '../components/MainSkillsContent.json';
 
 export default {
+	data() {
+		return {
+			skillsData: Skills,
+			paddingValue: 0,
+			loaded: false,
+		};
+	},
+	props: {
+		responsiveValue: {
+			type: Number,
+			default: 0,
+		},
+	},
+
+	components: {
+		SkillBarContent,
+	},
 	methods: {
 		fetch: function () {
 			console.log(document.getElementById('render'));
@@ -164,19 +105,45 @@ export default {
 	},
 
 	setup() {
-		const contentRenderer = ref('');
-		const textField = ref('');
+		let contentRenderer = ref('');
+		let textField = ref('');
 
 		const clearCodeBlock = () => {
-			console.log(contentRenderer);
-			contentRenderer.value.innerHTML = '';
+			contentRenderer.value.innerHTML = null;
 		};
+
+		const clearTerminalBlock = () => {
+			textField.value.innerText = null;
+		};
+
+		const renderOutTextField = computed(() => {
+			if (
+				textField.value.innerText === null ||
+        textField.value.innerText === undefined
+			)
+				return null;
+			let content = textField.value.innerText;
+			content = content.replaceAll('|', '');
+			return content;
+		});
 
 		return {
 			contentRenderer,
 			textField,
 			clearCodeBlock,
+			clearTerminalBlock,
+			renderOutTextField,
 		};
+	},
+
+	watch: {
+		windowWidth() {
+			if (this.windowWidth > 1280) {
+				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+			} else if (this.windowWidth < 1280) {
+				this.paddingValue = 0;
+			}
+		},
 	},
 
 	mounted() {
@@ -189,7 +156,7 @@ export default {
 			);
 			filter_contents = filter_contents.replaceAll('&lt;', '<');
 			filter_contents = filter_contents.replaceAll('&gt;', '>');
-			var dom = document.createElement('div');
+			const dom = document.createElement('div');
 			dom.innerHTML = filter_contents;
 			dom.classList.add('rendered-contents');
 			document.getElementById('render').appendChild(dom);
@@ -260,7 +227,7 @@ export default {
 			.type('/lable>')
 			.break()
 			.type('<')
-			.type('input placeholder=\'email\' class=\'p-1 px-3 w-20\'>', { speed: 50 })
+			.type('input placeholder=\'email\' class=\'p-1 w-20\'>', { speed: 50 })
 			.pause(2000)
 			.exec(async () => {
 				await new Promise((resolve, reject) => {
@@ -273,6 +240,7 @@ export default {
 			.pause(500)
 			.exec(async () => {
 				await new Promise((resolve, reject) => {
+					this.clearCodeBlock();
 					renderer();
 					setTimeout(() => {
 						return resolve();
@@ -303,5 +271,16 @@ export default {
 .highlight {
   color: var(--text-highlight);
   font-weight: bold;
+}
+
+.code-block-lines {
+  color: var(--text);
+  background-color: var(--text-highlight-2);
+}
+
+.code-block-terminal {
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
 }
 </style>

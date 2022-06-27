@@ -21,6 +21,7 @@ export default {
 			window.addEventListener('resize', this.onResize);
 		});
 		this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+		if (this.paddingValue > 400) this.paddingValue = 400;
 	},
 
 	beforeDestroy() {
@@ -31,6 +32,7 @@ export default {
 		windowWidth() {
 			if (this.windowWidth > 1280) {
 				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+				if (this.paddingValue > 400) this.paddingvalue = 400;
 			} else if (this.windowWidth < 1280) {
 				this.paddingValue = 0;
 			}
@@ -72,7 +74,7 @@ export default {
             enter-active-class="animate__animated animate__fadeInUp animate__fast"
             leave-active-class="animate__animated animate__fadeOutDown animate__fast"
           >
-            <component :is="Component" />
+            <component :is="Component" :responsive-value="paddingValue" />
           </transition>
         </router-view>
       </div>
@@ -214,6 +216,10 @@ body {
   padding: 1rem 2rem;
   border-radius: 4px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: var(--text-highlight);
 }
 
 h2 {

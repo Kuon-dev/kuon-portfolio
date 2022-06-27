@@ -8,8 +8,8 @@
       ></p>
     </div>
     <section class="">
-      <h2 class="text-4xl font-bold">Aaron Lyn</h2>
-      <p class="text-lg">Professional developer</p>
+      <h1 class="text-4xl font-bold">Aaron Lyn</h1>
+      <h3 class="text-lg">Professional web developer</h3>
     </section>
     <section class="pt-2">
       <h2
@@ -19,9 +19,8 @@
       </h2>
       <br />
       <p class="lg:text-lg text-sm text-justify leading-6">
-        &nbsp;&nbsp;&nbsp;&nbsp; Professional web developer with 2 years of
-        experience capable professional looking and user-friendly websites from
-        stratch and writes
+        &nbsp;&nbsp;&nbsp;&nbsp; Professional junior web developer capable
+        professional looking and user-friendly websites from stratch and writes
         <strong>performance optimized, reusable and refactorable codes</strong>.
         Professionally developed 5 web applications with multiple Javascript
         frameworks.

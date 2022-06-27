@@ -23,21 +23,30 @@
             : null
         "
       >
-        <div class="xl:max-w-[40rem] w-auto">
+        <div class="xl:max-w-[40rem] w-auto 2xl:flex hidden">
           <img
             :src="value.Image"
             class="bg-auto bg-center rounded-md border-2"
           />
-          <TagsComponent :tagSettings="value.Tags" />
+          <TagsComponent :tagSettings="value.Tags" class="pt-3" />
         </div>
 
         <div class="2xl:pt-2 xl:max-w-[40rem]">
           <h2
-            class="lg:text-xl text-lg font-bold underline underline-offset-8 decoration-4 whitespace-nowrap"
+            class="lg:text-xl pb-4 sm:pb-0 text-lg font-bold underline sm:underline-offset-8 decoration-3 sm:decoration-4 whitespace-nowrap"
           >
             {{ value.Title }}
           </h2>
-          <p class="lg:text-lg text-sm text-justify py-2 2xl:py-5">
+
+          <div class="xl:max-w-[40rem] w-auto 2xl:hidden flex flex-col">
+            <img
+              :src="value.Image"
+              class="bg-auto bg-center rounded-md border-2"
+            />
+            <TagsComponent :tagSettings="value.Tags" class="pt-3 pb-3" />
+          </div>
+
+          <p class="lg:text-lg text-md text-justify py-2 2xl:py-5">
             {{ value.Description }}
           </p>
           <p
