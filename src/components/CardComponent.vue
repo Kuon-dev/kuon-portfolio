@@ -51,7 +51,6 @@ export default {
 		};
 	},
 	mounted() {
-		console.log(this.title, this.description, this.duration);
 	},
 };
 </script>
