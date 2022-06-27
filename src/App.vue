@@ -1,8 +1,50 @@
 <script setup>
 import ThreeJS from './components/ThreeJs.vue';
-import Footer from './components/Footer.vue';
 import Navbar from './components/MainNavbar.vue';
 import 'animate.css';
+import { ref, onMounted, computed } from 'vue';
+</script>
+
+<script>
+export default {
+	data() {
+		return {
+			currentRoute: null,
+			windowWidth: window.innerWidth,
+			paddingValue: 0,
+			setRoutingResizeDelay: false,
+		};
+	},
+
+	mounted() {
+		this.$nextTick(() => {
+			window.addEventListener('resize', this.onResize);
+		});
+		this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+		if (this.paddingValue > 400) this.paddingValue = 400;
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('resize', this.onResize);
+	},
+
+	watch: {
+		windowWidth() {
+			if (this.windowWidth > 1280) {
+				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+				if (this.paddingValue > 400) this.paddingvalue = 400;
+			} else if (this.windowWidth < 1280) {
+				this.paddingValue = 0;
+			}
+		},
+	},
+
+	methods: {
+		onResize() {
+			this.windowWidth = window.innerWidth;
+		},
+	},
+};
 </script>
 
 <template>
@@ -14,7 +56,17 @@ import 'animate.css';
     >
       <Navbar />
       <ThreeJS />
-      <div class="pb-20 z-10 -mt-[5rem] -m-[3rem]">
+      <div
+        class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter px-5 sm:px-0"
+        :style="
+          this.windowWidth < 1280
+            ? null
+            : {
+                'padding-left': this.paddingValue - 50 + 'px',
+                'padding-right': this.paddingValue - 50 + 'px',
+              }
+        "
+      >
         <!-- contents -->
         <router-view v-slot="{ Component }">
           <transition
@@ -22,7 +74,7 @@ import 'animate.css';
             enter-active-class="animate__animated animate__fadeInUp animate__fast"
             leave-active-class="animate__animated animate__fadeOutDown animate__fast"
           >
-            <component :is="Component" />
+            <component :is="Component" :responsive-value="paddingValue" />
           </transition>
         </router-view>
       </div>
@@ -164,6 +216,10 @@ body {
   padding: 1rem 2rem;
   border-radius: 4px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: var(--text-highlight);
 }
 
 h2 {

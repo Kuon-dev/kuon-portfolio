@@ -1,0 +1,113 @@
+[
+    {
+        "type": "frontend",
+        "technologies": [
+            {
+                "title": "React",
+                "description": "React is a popular Javascript framework",
+                "duration": "3 months",
+                "image": "devicon-react-original"
+            },
+            {
+                "title": "Vue",
+                "description": "",
+                "duration": "6 months",
+                "image": "devicon-vuejs-plain"
+            },
+            {
+                "title": "ThreeJS",
+                "description": "",
+                "duration": "3 months",
+                "image": "devicon-threejs-original"
+            },
+            {
+                "title": "Javascript (ES6)",
+                "description": "",
+                "duration": "1 year",
+                "image": "devicon-javascript-plain"
+            },
+            {
+                "title": "HTML5",
+                "description": "",
+                "duration": "1 year",
+                "image": "devicon-html5-plain"
+            },
+            {
+                "title": "CSS3",
+                "description": "",
+                "duration": "1 year",
+                "image": "devicon-css3-plain"
+            },
+            {
+                "title": "Tailwind",
+                "description": "",
+                "duration": "6 months",
+                "image": "devicon-tailwindcss-plain"
+            }
+        ]
+    },
+    {
+        "type": "backend",
+        "technologies": [
+            {
+                "title": "Python",
+                "description": "",
+                "duration": "",
+                "image": "devicon-python-plain"
+            },
+            {
+                "title": "Node",
+                "description": "",
+                "duration": "",
+                "image": "devicon-nodejs-plain"
+            },
+            {
+                "title": "Java",
+                "description": "",
+                "duration": "",
+                "image": "devicon-java-plain"
+            },
+            {
+                "title": "MongoDB",
+                "description": "",
+                "duration": "",
+                "image": "devicon-mongodb-plain"
+            },
+            {
+                "title": "Laravel",
+                "description": "",
+                "duration": "",
+                "image": "devicon-laravel-plain"
+            }
+        ]
+    },
+    {
+        "type": "tools",
+        "technologies": [
+            {
+                "title": "Markdown",
+                "description": "",
+                "duration": "",
+                "image": "devicon-markdown-original"
+            },
+            {
+                "title": "Vim",
+                "description": "",
+                "duration": "",
+                "image": "devicon-vim-plain"
+            },
+            {
+                "title": "Figma",
+                "description": "",
+                "duration": "",
+                "image": "devicon-figma-plain"
+            },
+            {
+                "title": "Linux (Arch)",
+                "description": "",
+                "duration": "",
+                "image": "devicon-linux-plain"
+            }
+        ]
+    }
+]

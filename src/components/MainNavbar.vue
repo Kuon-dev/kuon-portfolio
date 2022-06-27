@@ -1,8 +1,8 @@
 <template>
   <!-- pc view port -->
   <!-- old navbar tags xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[5rem]  -->
-  <section class="pt-2 navbar fixed w-full divCenter ]">
-    <div class="2xl:flex flex-row py-3 px-3 hidden">
+  <section class="pt-2 navbar fixed w-full divCenter">
+    <div class="2xl:flex flex-row py-3 px-3 hidden ml-20">
       <div>
         <h1 class="text-4xl font-bold">
           <router-link to="/" @click="Scroll_Top">Aaron</router-link>
@@ -164,11 +164,11 @@
 import anime from 'animejs/lib/anime.es.js';
 
 export default {
-  data(){
-    return {
-      "svgSource": "./assets/theme.svg"
-    }
-  },
+	data() {
+		return {
+			svgSource: './assets/theme.svg',
+		};
+	},
 
 	methods: {
 		Scroll_Top() {

@@ -4,7 +4,7 @@
       <h2
         class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
       >
-        Contact me
+        Get in touch
       </h2>
       <br />
       <p class="lg:text-lg text-sm text-justify leading-6">
