@@ -18,7 +18,7 @@ export default {
 	},
 
 	mounted() {
-    const setResponsive = setTimeout(()=> this.setDefaultPadding(), 300) 
+    this.setDefaultPadding() 
 
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.onResize);
