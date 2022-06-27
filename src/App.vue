@@ -70,8 +70,8 @@ export default {
           windowWidth < 1280
             ? null
             : {
-                'padding-left': this.paddingValue - 50 + 'px',
-                'padding-right': this.paddingValue - 50 + 'px',
+                'padding-left': paddingValue - 50 + 'px',
+                'padding-right': paddingValue - 50 + 'px',
               }
         "
       >
