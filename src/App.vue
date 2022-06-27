@@ -10,13 +10,14 @@ export default {
 	data() {
 		return {
 			currentRoute: null,
-			windowWidth: window.innerWidth,
+			windowWidth: null,
 			paddingValue: 0,
 			setRoutingResizeDelay: false,
 		};
 	},
 
 	mounted() {
+    this.windowWidth = window.innerWidth
     const setResponsive = setTimeout(()=> this.setDefaultPadding(), 300) 
 
 		this.$nextTick(() => {
