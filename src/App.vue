@@ -17,11 +17,12 @@ export default {
 	},
 
 	mounted() {
+     this.setDefaultPadding()
+
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.onResize);
 		});
-		this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
-		if (this.paddingValue > 400) this.paddingValue = 400;
+
 	},
 
 	beforeDestroy() {
@@ -30,10 +31,10 @@ export default {
 
 	watch: {
 		windowWidth() {
-			if (this.windowWidth > 1280) {
-				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+			if (this?.windowWidth > 1280) {
+				this.paddingValue = Math.trunc(this?.windowWidth - 1280) / 2;
 				if (this.paddingValue > 400) this.paddingvalue = 400;
-			} else if (this.windowWidth < 1280) {
+			} else if (this?.windowWidth < 1280) {
 				this.paddingValue = 0;
 			}
 		},
@@ -43,6 +44,11 @@ export default {
 		onResize() {
 			this.windowWidth = window.innerWidth;
 		},
+    setDefaultPadding: function() {
+			this.paddingValue = Math.trunc(this?.windowWidth - 1280) / 2;
+			if (this.paddingValue > 400) this.paddingValue = 400;
+		},
+
 	},
 };
 </script>
