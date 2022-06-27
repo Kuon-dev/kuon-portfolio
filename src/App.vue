@@ -18,6 +18,7 @@ export default {
 
 	mounted() {
     this.windowWidth = window.innerWidth
+    console.log(this.windowWidth)
     const setResponsive = setTimeout(()=> this.setDefaultPadding(), 300) 
 
 		this.$nextTick(() => {
