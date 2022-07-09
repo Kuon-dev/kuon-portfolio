@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="selector h-[8rem] w-[10rem] div-center py-1 pt-2 rounded-lg hover:border-2 transition ease-in-out border-wrapper-hover hover:rotate-12 icon-highlight"
+      class="selector h-[8rem] w-[10rem] div-center py-1 pt-2 rounded-lg hover:border-2 transition ease-in-out border-wrapper-hover hover:rotate-6 icon-highlight"
       @mouseover="isHovering = true"
       @mouseleave="isHovering = false"
     >
@@ -9,16 +9,18 @@
         class="flex flex-col items-center gap-2 animate__animated animate__fadeIn animate__fast"
       >
         <i :class="image" class="text-7xl" style="font-weight: normal" />
-        <p class="font-bold whitespace-nowrap">{{ title }}</p>
-      </div>
-
-      <div
-        class="animate__animated animate__fadeIn animate__fast text-center py-2 px-1 overflow-hidden hidden"
-        v-show="isHovering"
-        :class="isHovering ? null : 'animate__fadeOut'"
-      >
-        <p class="">{{ description }}</p>
-        <p class="icon-highlight">{{ duration }}</p>
+        <p
+          class="font-bold whitespace-nowrap"
+          :class="!isHovering ? 'flex' : 'hidden'"
+        >
+          {{ title }}
+        </p>
+        <p
+          class="font-bold whitespace-nowrap"
+          :class="isHovering ? 'flex' : 'hidden'"
+        >
+          {{ duration ? duration : 'not specified' }}
+        </p>
       </div>
     </div>
   </div>
@@ -50,8 +52,7 @@ export default {
 			isHovering: false,
 		};
 	},
-	mounted() {
-	},
+	mounted() {},
 };
 </script>
 
