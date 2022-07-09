@@ -15,12 +15,13 @@
         >
           {{ title }}
         </p>
-        <p
+        <div
           class="font-bold whitespace-nowrap"
           :class="isHovering ? 'flex' : 'hidden'"
         >
+          <!-- eslint-disable-next-line -->
           {{ duration ? duration : 'not specified' }}
-        </p>
+        </div>
       </div>
     </div>
   </div>

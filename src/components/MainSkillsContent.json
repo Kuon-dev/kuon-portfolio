@@ -52,31 +52,31 @@
             {
                 "title": "Python",
                 "description": "",
-                "duration": "",
+                "duration": "6 months",
                 "image": "devicon-python-plain"
             },
             {
                 "title": "Node",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-nodejs-plain"
             },
             {
                 "title": "Java",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-java-plain"
             },
             {
                 "title": "MongoDB",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-mongodb-plain"
             },
             {
                 "title": "Laravel",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-laravel-plain"
             }
         ]
@@ -87,25 +87,25 @@
             {
                 "title": "Markdown",
                 "description": "",
-                "duration": "",
+                "duration": "1 year",
                 "image": "devicon-markdown-original"
             },
             {
                 "title": "Vim",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-vim-plain"
             },
             {
                 "title": "Figma",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-figma-plain"
             },
             {
                 "title": "Linux (Arch)",
                 "description": "",
-                "duration": "",
+                "duration": "3 months",
                 "image": "devicon-linux-plain"
             }
         ]
