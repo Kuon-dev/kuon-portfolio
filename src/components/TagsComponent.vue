@@ -4,7 +4,7 @@
       <li
         v-for="(value, index) in tagSettings"
         :key="index"
-        class="lg:text-md text-sm text-center selector rounded-md xl:p-3 xl:px-4 p-2 px-3"
+        class="lg:text-md text-sm text-center selector rounded-md xl:p-3 xl:px-4 p-2 px-3 cursor-default"
       >
         {{ value }}
       </li>

@@ -8,13 +8,20 @@
 </template>
 
 <script>
+/* eslint-disable */
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
+/* eslint-enable */
 export default {
+	data() {
+		return {
+			hasUnintendedBehaviors: false,
+		};
+	},
 	methods: {
 		// prompt resize on reload
 		ThreeJS_resize() {
@@ -62,7 +69,9 @@ export default {
 			},
 			undefined,
 			function (error) {
-				console.error(error);
+				// console.error(error);
+				// comment this for debugging
+				this.$router.push('notfound');
 			}
 		);
 

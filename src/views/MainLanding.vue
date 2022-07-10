@@ -4,6 +4,7 @@
     <div class="divCenter">
       <p
         id="landing_intro"
+        ref="landingIntro"
         class="lg:text-xl text-md acrlyic w-auto text-center selector"
       ></p>
     </div>
@@ -98,12 +99,20 @@
 <script>
 import TypeIt from 'typeit';
 import 'animate.css';
+import { ref } from 'vue';
 
 export default {
 	data() {
 		return {
 			display: false,
 		};
+	},
+	setup() {
+		const landingIntro = ref('');
+
+		if (landingIntro.value !== '') {
+			landingIntro.value === '';
+		}
 	},
 	mounted() {
 		new TypeIt('#landing_intro', {
