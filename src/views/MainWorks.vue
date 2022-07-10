@@ -4,6 +4,7 @@
       <p
         id="works_intro"
         class="lg:text-xl text-md acrlyic w-auto text-center selector"
+        ref="worksIntro"
       ></p>
     </div>
     <br />
@@ -76,6 +77,7 @@
 import TypeIt from 'typeit';
 import Works from '../components/MainWorksContent.json';
 import TagsComponent from '../components/TagsComponent.vue';
+import { ref } from 'vue';
 
 export default {
 	components: {
@@ -88,7 +90,13 @@ export default {
 			isInMobile: false,
 		};
 	},
-	methods: {},
+	setup() {
+		const worksIntro = ref('');
+
+		if (worksIntro.value !== '') {
+			worksIntro.value === '';
+		}
+	},
 	mounted() {
 		this.indexMaxLength = this.worksData.length - 1;
 		new TypeIt('#works_intro', {
