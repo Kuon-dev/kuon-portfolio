@@ -38,10 +38,21 @@ export default {
 			}
 		},
 	},
+	mounted() {
+		this.setDefaultWidth();
+	},
 
 	methods: {
-		onResize() {
-			this.windowWidth = window.innerWidth;
+		setWindowWidth(v) {
+			this.windowWidth = v;
+		},
+		setDefaultWidth() {
+			if (this.windowWidth > 1280) {
+				this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+				if (this.paddingValue > 400) this.paddingvalue = 400;
+			} else if (this.windowWidth < 1280) {
+				this.paddingValue = 0;
+			}
 		},
 	},
 };
@@ -54,10 +65,10 @@ export default {
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
     >
-      <Navbar />
+      <Navbar @updateWindowSize="setWindowWidth($event)" />
       <ThreeJS />
       <div
-        class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter px-5 sm:px-0"
+        class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter px-5 sm:px-0 content-container"
         :style="
           this.windowWidth < 1280
             ? null
@@ -83,6 +94,8 @@ export default {
 </template>
 
 <style>
+@import '../public/catppuccin.css';
+
 :root {
   --white: #ffffff;
   --whiteFilter: invert(100%) sepia(0%) saturate(7482%) hue-rotate(149deg)
@@ -139,11 +152,9 @@ export default {
 }
 
 @media (max-width: 370px) {
-  html,
-  body {
-  }
 }
 
+html,
 body {
   background-color: rgb(45, 45, 45);
   font-family: Helvetica, Roboto, sans-serif;
@@ -151,33 +162,13 @@ body {
   caret-color: var(--text);
   background-color: var(--bg);
   transition: background 500ms ease-in-out, color 1000ms ease-in-out,
-    filter 2000ms ease-in-out;
+    filter 2000ms ease-in-out, border-color 1000ms ease-in-out;
 }
 
 .divCenter {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.light {
-  --bg: var(--cyan1);
-  --bg-sel: var(--cyan2T);
-  --svg-color: var(--oxfordBlueFilter);
-  --text: var(--oxfordBlue);
-  --ti-cursor-color: var(--text);
-  --text-highlight: var(--solar2);
-  --text-highlight-2: var(--starfall-highlight);
-}
-
-.dark {
-  --bg: var(--gray9);
-  --bg-sel: var(--gray8T);
-  --svg-color: var(--whiteFilter);
-  --text: var(--white);
-  --ti-cursor-color: var(--text);
-  --text-highlight: var(--cyan3);
-  --text-highlight-2: var(--starfall-highlight);
 }
 
 .solarized {
@@ -218,10 +209,7 @@ body {
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  color: var(--text-highlight);
-}
-
+h1,
 h2 {
   color: var(--text-highlight);
 }

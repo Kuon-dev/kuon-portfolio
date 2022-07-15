@@ -10,21 +10,15 @@
       </div>
       <div class="text-2xl inline-block px-10 pt-[0.4rem]">
         <ul class="flex flex-row">
-          <li class="px-3">
+          <li
+            class="px-3 flex flex-row"
+            v-for="(value, index) in webRoutes"
+            :key="index"
+          >
             <button>
-              <router-link to="/contact" @click="Scroll_Top"
-                >Contact</router-link
-              >
-            </button>
-          </li>
-          <li class="px-3">
-            <button>
-              <router-link to="/skills" @click="Scroll_Top">Skills</router-link>
-            </button>
-          </li>
-          <li class="px-3">
-            <button>
-              <router-link to="/work" @click="Scroll_Top">Works</router-link>
+              <router-link :to="value.route" @click="Scroll_Top">{{
+                value.title
+              }}</router-link>
             </button>
           </li>
         </ul>
@@ -36,38 +30,12 @@
       <!-- select theme icon && dropdown -->
       <div class="rightSide has-dpdn">
         <!-- select theme icon -->
-        <button class="border-2 rounded-lg p-[0.35rem] svg_border">
-          <img
-            :src="svgSource"
-            class="svgColor inline min-w-[30px] min-h-[30px]"
-            width="30px"
-            height="30px"
-          />
-        </button>
+        <NavbarIcons :selected-icon="'themeSelector'" />
         <!-- drop down section  -->
-        <ul
-          class="p-3 px-5 mt-3 rounded-md dpdn translate-x-[-30%] drop-shadow-lg"
-        >
-          <li class="py-1">
-            <button class="dpdn_item text-xl" id="light">Light</button>
-          </li>
-          <li class="py-1">
-            <button class="dpdn_item text-xl" id="dark">Dark</button>
-          </li>
-          <li class="py-1">
-            <button class="dpdn_item text-xl" id="solarized">Solarized</button>
-          </li>
-          <li class="py-1">
-            <button class="dpdn_item text-xl" id="dark_solar">
-              Dark Solarized
-            </button>
-          </li>
-          <li class="py-1">
-            <button class="dpdn_item text-xl" id="starfall">Starfall</button>
-          </li>
-        </ul>
       </div>
     </div>
+
+    <!-------------------------------------------------------------------------------------->
 
     <!-- mobile viewport -->
     <div class="2xl:hidden flex flex-row py-3 items-center">
@@ -78,79 +46,38 @@
           >
         </h1>
       </div>
+
       <div>
-        <div class="lg:w-[30rem] md:w-[20rem] sm:w-[15rem] w-20"></div>
+        <!-- separator -->
+        <div
+          :style="
+            windowWidth > 400
+              ? { width: windowWidth / 3 + 'px' }
+              : { width: windowWidth / 8 + 'px' }
+          "
+        />
       </div>
+
       <div class="rightSide flex flex-row">
         <div class="has-dpdn px-[2rem]">
           <!-- select theme icon -->
-          <button class="border-2 rounded-md p-[0.35rem] svg_border">
-            <img
-              :src="svgSource"
-              class="svgColor inline min-w-[25px] min-h-[25px]"
-              width="20px"
-              height="20px"
-            />
-          </button>
-          <!-- drop down section  -->
-          <ul
-            class="p-3 px-5 mt-3 rounded-md dpdn 2xl:translate-x-[-40%] lg:translate-x-[-30%] translate-x-[-35%] drop-shadow-lg whitespace-nowrap acrlyic"
-          >
-            <li class="py-1 z-40">
-              <button class="dpdn_item md:text-2xl text-3xl" id="MB_light">
-                Light
-              </button>
-            </li>
-            <li class="py-1">
-              <button class="dpdn_item md:text-2xl text-3xl" id="MB_dark">
-                Dark
-              </button>
-            </li>
-            <li class="py-1">
-              <button class="dpdn_item md:text-2xl text-3xl" id="MB_solarized">
-                Solarized
-              </button>
-            </li>
-            <li class="py-1">
-              <button class="dpdn_item md:text-2xl text-3xl" id="MB_dark_solar">
-                Dark Solarized
-              </button>
-            </li>
-            <li class="py-1">
-              <button class="dpdn_item md:text-2xl text-3xl" id="MB_starfall">
-                Starfall
-              </button>
-            </li>
-          </ul>
+          <NavbarIcons :selected-icon="'themeSelector'" />
         </div>
+        <!-- drop down section  -->
         <div class="has-dpdn">
-          <button class="">
-            <div class="border-2 rounded-md p-[0.48rem] svg_border -mt-[1px]">
-              <div class="h-[0.15rem] w-[1.5rem] navbar_burger"></div>
-              <div class="h-[0.15rem] w-[1.5rem] navbar_burger mt-2"></div>
-              <div class="h-[0.15rem] w-[1.5rem] navbar_burger mt-2"></div>
-            </div>
-          </button>
+          <NavbarIcons :selected-icon="'burgerMenu'" />
           <ul
-            class="p-3 px-5 mt-2 rounded-md dpdn xl:translate-x-[-10%] translate-x-[-60%] drop-shadow-lg whitespace-nowrap"
+            class="p-3 px-5 mt-3 rounded-md dpdn 2xl:translate-x-[-40%] lg:translate-x-[-30%] translate-x-[-65%] drop-shadow-lg whitespace-nowrap acrlyic"
           >
-            <li class="py-1">
+            <li
+              class="flex px-3 py-1 z-40"
+              v-for="(value, index) in webRoutes"
+              :key="index"
+            >
               <button class="dpdn_item md:text-2xl text-3xl">
-                <router-link to="/contact" @click="Scroll_Top"
-                  >Contact</router-link
-                >
-              </button>
-            </li>
-            <li class="py-1">
-              <button class="dpdn_item md:text-2xl text-3xl">
-                <router-link to="/skills" @click="Scroll_Top"
-                  >Skills</router-link
-                >
-              </button>
-            </li>
-            <li class="py-1">
-              <button class="dpdn_item md:text-2xl text-3xl">
-                <router-link to="/work" @click="Scroll_Top">Works</router-link>
+                <router-link :to="value.route" @click="Scroll_Top">
+                  {{ value.title }}
+                </router-link>
               </button>
             </li>
           </ul>
@@ -162,108 +89,59 @@
 
 <script>
 import anime from 'animejs/lib/anime.es.js';
+import NavbarIcons from './MainNavbarComponents/NavbarIcons.vue';
+import { nextTick } from 'vue';
 
 export default {
+	components: {
+		NavbarIcons,
+	},
+
 	data() {
 		return {
-			svgSource: './assets/theme.svg',
+			windowWidth: window.innerWidth,
 		};
+	},
+
+	setup(props) {
+		const webRoutes = {
+			contact: {
+				title: 'Contact',
+				route: '/contact',
+			},
+			skills: {
+				title: 'Skills',
+				route: '/skills',
+			},
+			works: {
+				title: 'Works',
+				route: '/work',
+			},
+		};
+
+		return {
+			webRoutes,
+		};
+	},
+
+	emits: ['updateWindowSize'],
+	mounted() {
+		this.onResize();
+
+		this.$nextTick(() => {
+			window.addEventListener('resize', this.onResize);
+		});
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('resize', this.onResize);
 	},
 
 	methods: {
-		Scroll_Top() {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
+		onResize() {
+			this.windowWidth = window.innerWidth;
+			this.$emit('updateWindowSize', this.windowWidth);
 		},
-	},
-	mounted() {
-		// DOM elements
-		const lightBtn = document.getElementById('light');
-		const darkBtn = document.getElementById('dark');
-		const solarBtn = document.getElementById('solarized');
-		const darkSolarBtn = document.getElementById('dark_solar');
-		const starfall = document.getElementById('starfall');
-
-		// Dom elements for mobile viewport
-		const mb_lightBtn = document.getElementById('MB_light');
-		const mb_darkBtn = document.getElementById('MB_dark');
-		const mb_solarBtn = document.getElementById('MB_solarized');
-		const mb_darkSolarBtn = document.getElementById('MB_dark_solar');
-		const mb_starfall = document.getElementById('MB_starfall');
-
-		const body = document.body;
-
-		// local storage cache for themes
-		const theme = localStorage.getItem('theme');
-		if (theme) {
-			body.classList.add(theme);
-		}
-
-		// event listiners
-		lightBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('light');
-			localStorage.setItem('theme', 'light');
-		};
-
-		darkBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('dark');
-			localStorage.setItem('theme', 'dark');
-		};
-
-		solarBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('solarized');
-			localStorage.setItem('theme', 'solarized');
-		};
-
-		darkSolarBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('dark_solar');
-			localStorage.setItem('theme', 'dark_solar');
-		};
-
-		starfall.onclick = () => {
-			body.className = '';
-			body.classList.add('starfall');
-			localStorage.setItem('theme', 'starfall');
-		};
-		// mobile event listeners
-
-		mb_lightBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('light');
-			localStorage.setItem('theme', 'light');
-		};
-
-		mb_darkBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('dark');
-			localStorage.setItem('theme', 'dark');
-		};
-
-		mb_solarBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('solarized');
-			localStorage.setItem('theme', 'solarized');
-		};
-
-		mb_darkSolarBtn.onclick = () => {
-			body.className = '';
-			body.classList.add('dark_solar');
-			localStorage.setItem('theme', 'dark_solar');
-		};
-
-		mb_starfall.onclick = () => {
-			body.className = '';
-			body.classList.add('starfall');
-			localStorage.setItem('theme', 'starfall');
-		};
-
-		// anime({
-		//     targets: elements,
-		//     translateX: 270
-		// })
 	},
 };
 </script>

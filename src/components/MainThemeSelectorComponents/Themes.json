@@ -1,0 +1,101 @@
+[
+    {
+        "Name": "Light",
+        "DomID": "Light",
+        "ColorScheme": {
+            "bg": "#d8fdf7",
+            "bgSelector": "#b1fbef99",
+            "svgColor": "invert(6%) sepia(27%) saturate(6747%) hue-rotate(203deg)",
+            "text": "#011936",
+            "tiCursorColor": "#011936",
+            "textHighlight": "#073642",
+            "textHighlightAlt": "#e278c4"
+        },
+        "themeType": "light"
+    },
+    {
+        "Name": "Dark",
+        "DomID": "Dark",
+        "ColorScheme": {
+            "bg": "#232323",
+            "bgSelector": "#2d2d2dee",
+            "svgColor": "invert(100%) sepia(0%) saturate(7482%) hue-rotate(149deg) brightness(101%) contrast(100%)",
+            "text": "#FFFFFF",
+            "tiCursorColor": "#FFFFFF",
+            "textHighlight": "#b1fbef",
+            "textHighlightAlt": "#e278c4"
+        },
+
+        "themeType": "dark"
+    },
+    {
+        "Name": "Starfall",
+        "DomID": "Starfall",
+        "ColorScheme": {
+            "bg": "#1b2636",
+            "bgSelector": "#214d63ee",
+            "svgColor": "invert(100%) sepia(0%) saturate(7482%) hue-rotate(149deg) brightness(101%) contrast(100%)",
+            "text": "#cacde2",
+            "tiCursorColor": "#cacde2",
+            "textHighlight": "#e278c4",
+            "textHighlightAlt": "#8de8b0"
+        },
+        "themeType": "dark"
+    },
+    {
+        "Name": "Mocha",
+        "DomID": "CatMocha",
+        "ColorScheme": {
+            "bg": "#1e1e2e",
+            "bgSelector": "#43465a99",
+            "svgColor": "invert(100%) sepia(0%) saturate(7482%) hue-rotate(149deg) brightness(101%) contrast(100%)",
+            "text": "#c6d0f5",
+            "tiCursorColor": "#c6d0f5",
+            "textHighlight": "#a6e3a1",
+            "textHighlightAlt": "#cba6f7"
+        },
+        "themeType": "light"
+    },
+    {
+        "Name": "Latte",
+        "DomID": "CatLatte",
+        "ColorScheme": {
+            "bg": "#eff1f5",
+            "bgSelector": "#ccd0da99",
+            "svgColor": "invert(6%) sepia(27%) saturate(6747%) hue-rotate(203deg)",
+            "text": "#4c4f69",
+            "tiCursorColor": "#4c4f69",
+            "textHighlight": "#fe640b",
+            "textHighlightAlt": "#7287fd"
+        },
+        "themeType": "dark"
+    },
+    {
+        "Name": "Frappe",
+        "DomID": "CatFrappe",
+        "ColorScheme": {
+            "bg": "#303446",
+            "bgSelector": "#41455999",
+            "svgColor": "invert(100%) sepia(0%) saturate(7482%) hue-rotate(149deg) brightness(101%) contrast(100%)",
+            "text": "#c6ceef",
+            "tiCursorColor": "#c6ceef",
+            "textHighlight": "#e78284",
+            "textHighlightAlt": "#a6d189"
+        },
+        "themeType": "dark"
+    },
+    {
+        "Name": "Macchiato",
+        "DomID": "CatMacchiato",
+        "ColorScheme": {
+            "bg": "#24273a",
+            "bgSelector": "#363a4f99",
+            "svgColor": "invert(100%) sepia(0%) saturate(7482%) hue-rotate(149deg) brightness(101%) contrast(100%)",
+            "text": "#c5cff5",
+            "tiCursorColor": "#c5cff5",
+            "textHighlight": "#8aadf4",
+            "textHighlightAlt": "#ed8796"
+        },
+        "themeType": "dark"
+    }
+]
