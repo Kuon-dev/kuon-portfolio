@@ -9,7 +9,7 @@
       leave-to-class="opacity-0"
     >
       <div
-        class="top-0 fixed z-10 w-full bg-black bg-opacity-50 h-full overflow-auto"
+        class="top-0 fixed z-50 w-full bg-black bg-opacity-50 h-full overflow-auto"
         v-show="isShowingThemeOverlay"
         :class="isShowingThemeOverlay ? '' : 'overflow-auto '"
         @click.stop.prevent="closeThemeOverlay($event)"
