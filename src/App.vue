@@ -70,7 +70,7 @@ export default {
       <div
         class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter px-5 sm:px-0 content-container"
         :style="
-          this.windowWidth < 1280
+          windowWidth < 1280
             ? null
             : {
                 'padding-left': this.paddingValue - 50 + 'px',
