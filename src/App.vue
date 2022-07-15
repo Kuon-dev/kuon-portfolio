@@ -11,17 +11,19 @@ export default {
 		return {
 			currentRoute: null,
 			windowWidth: window.innerWidth,
+      setWindowWidth: '',
 			paddingValue: 0,
 			setRoutingResizeDelay: false,
 		};
 	},
 
 	mounted() {
+    this.setDefaultPadding() 
+
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.onResize);
 		});
-		this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
-		if (this.paddingValue > 400) this.paddingValue = 400;
+
 	},
 
 	beforeDestroy() {
@@ -54,6 +56,12 @@ export default {
 				this.paddingValue = 0;
 			}
 		},
+
+    setDefaultPadding() {
+			this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
+			if (this.paddingValue > 400) this.paddingValue = 400;
+		},
+
 	},
 };
 </script>
