@@ -1,8 +1,10 @@
 <template>
   <div class="flex items-center justify-between" ref="preview">
-    <div class="flex flex-row flex-wrap">
+    <div
+      class="lg:inline-grid lg:grid-cols-3 lg:gap-x-8 inline-grid grid-cols-1 w-full justify-center"
+    >
       <div
-        class="theme-selector-card-component rounded-lg block px-2 py-2 text-center my-3 mx-3 xl:w-48 w-full"
+        class="div-center theme-selector-card-component rounded-lg px-2 py-2 text-center my-3 mx-3"
         @click="selectTheme(value)"
         @mouseenter="previewTheme(value, $event)"
         @mouseleave="revertTheme"
@@ -37,7 +39,7 @@ const themesData = Themes;
 
 const setTheme = ref({});
 const preview = ref('');
-const checkCurrentTheme = ref(document.body.classList);
+const checkCurrentTheme = ref(document.body.classList[0]);
 
 const previewTheme = (theme, event) => {
 	const { ColorScheme } = theme;

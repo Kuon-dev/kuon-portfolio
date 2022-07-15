@@ -171,6 +171,12 @@ body {
   justify-content: center;
 }
 
+.div-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .solarized {
   --bg: var(--solar8);
   --bg-sel: var(--solar8T);
@@ -191,7 +197,7 @@ body {
   --text-highlight-2: var(--solar10);
 }
 
-.starfall {
+.Starfall {
   --bg: var(--starfall-bg);
   --bg-sel: var(--starfall-sel);
   --svg-color: var(--whiteFilter);

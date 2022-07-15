@@ -9,15 +9,16 @@
       leave-to-class="opacity-0"
     >
       <div
-        class="top-0 fixed z-10 h-full w-full bg-black bg-opacity-50"
+        class="top-0 fixed z-10 w-full bg-black bg-opacity-50 h-full overflow-auto"
         v-show="isShowingThemeOverlay"
+        :class="isShowingThemeOverlay ? '' : 'overflow-auto '"
         @click.stop.prevent="closeThemeOverlay($event)"
       >
         <div
           class="flex items-start justify-center min-h-screen pt-24 text-center"
         >
           <div
-            class="overlay-bg acrlyic rounded-lg text-left overflow-hidden shadow-xl w-10/12 sm:w-1/2"
+            class="overlay-bg acrlyic rounded-lg text-left overflow-hidden shadow-xl w-10/12 sm:w-1/2 overflow-y-auto"
           >
             <CardComponent />
           </div>
