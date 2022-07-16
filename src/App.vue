@@ -3,6 +3,33 @@ import ThreeJS from './components/ThreeJs.vue';
 import Navbar from './components/MainNavbar.vue';
 import 'animate.css';
 import { ref, onMounted, computed } from 'vue';
+import Themes from './components/MainThemeSelectorComponents/Themes.json';
+
+const body = document.body;
+const setTheme = ref({});
+const baseModel = ref('');
+const themesData = Themes;
+
+const isThemeLoaded = ref(false);
+const isThemeSelected = ref(false);
+
+const setDefaultTheme = () => {
+	if (body.className !== 'placeholder-theme') return;
+	const randomTheme = themesData[Math.floor(Math.random() * themesData.length)];
+	const userPreferTheme = localStorage.getItem('themePreference');
+	if (randomTheme.themeType === userPreferTheme || userPreferTheme === null) {
+		isThemeSelected.value = true;
+		setTheme.value = randomTheme.ColorScheme;
+		setTimeout(() => {
+			body.setAttribute('style', baseModel.value.attributes.style.value);
+			isThemeLoaded.value = true;
+		}, 1000);
+	} else {
+		setDefaultTheme();
+	}
+};
+
+setDefaultTheme();
 </script>
 
 <script>
@@ -11,19 +38,23 @@ export default {
 		return {
 			currentRoute: null,
 			windowWidth: window.innerWidth,
-      setWindowWidth: '',
 			paddingValue: 0,
 			setRoutingResizeDelay: false,
 		};
 	},
 
 	mounted() {
-    this.setDefaultPadding() 
-
 		this.$nextTick(() => {
 			window.addEventListener('resize', this.onResize);
 		});
 
+		setTimeout(() => {
+			this.setDefaultPadding();
+			this.setDefaultWidth();
+			const body = document.body;
+			body.className = '';
+			body.classList.add('set-palette');
+		}, 100);
 	},
 
 	beforeDestroy() {
@@ -40,9 +71,6 @@ export default {
 			}
 		},
 	},
-	mounted() {
-		this.setDefaultWidth();
-	},
 
 	methods: {
 		setWindowWidth(v) {
@@ -57,11 +85,10 @@ export default {
 			}
 		},
 
-    setDefaultPadding() {
+		setDefaultPadding() {
 			this.paddingValue = Math.trunc(this.windowWidth - 1280) / 2;
 			if (this.paddingValue > 400) this.paddingValue = 400;
 		},
-
 	},
 };
 </script>
@@ -69,9 +96,16 @@ export default {
 <template>
   <div
     class="3xl:px-[5rem] 4xl:px-[10rem] 5xl:px-[20rem] 6xl:px-[50rem] 7xl:px-[100rem] 8xl:px-[150rem]"
+    ref="baseModel"
   >
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
+      v-show="isThemeLoaded"
+      :class="
+        isThemeLoaded
+          ? 'animate__animated animate__fadeInUp animate__fast'
+          : null
+      "
     >
       <Navbar @updateWindowSize="setWindowWidth($event)" />
       <ThreeJS />
@@ -97,6 +131,17 @@ export default {
           </transition>
         </router-view>
       </div>
+    </div>
+
+    <div
+      v-show="!isThemeLoaded"
+      :class="
+        isThemeLoaded
+          ? 'animate__animated animate__fadeOut animate__fast'
+          : null
+      "
+    >
+      Loading
     </div>
   </div>
 </template>
@@ -185,6 +230,16 @@ body {
   justify-content: center;
 }
 
+.set-palette {
+  --bg: v-bind('setTheme.bg');
+  --bg-sel: v-bind('setTheme.bgSelector');
+  --svg-color: v-bind('setTheme.svgColor');
+  --text: v-bind('setTheme.text');
+  --ti-cursor-color: v-bind('setTheme.tiCursorColor');
+  --text-highlight: v-bind('setTheme.textHighlight');
+  --text-highlight-2: v-bind('setTheme.textHighlightAlt');
+}
+
 .solarized {
   --bg: var(--solar8);
   --bg-sel: var(--solar8T);
@@ -205,7 +260,7 @@ body {
   --text-highlight-2: var(--solar10);
 }
 
-.Starfall {
+.placeholder-theme {
   --bg: var(--starfall-bg);
   --bg-sel: var(--starfall-sel);
   --svg-color: var(--whiteFilter);

@@ -6,7 +6,7 @@
       <div
         class="div-center theme-selector-card-component rounded-lg px-2 py-2 text-center my-3 mx-3"
         @click="selectTheme(value)"
-        @mouseenter="previewTheme(value, $event)"
+        @mouseenter="previewTheme(value)"
         @mouseleave="revertTheme"
         v-for="value in themesData"
         :key="value.DomId"
@@ -37,11 +37,12 @@ import { ref, computed, watchEffect } from 'vue';
 
 const themesData = Themes;
 
+const body = document.body;
 const setTheme = ref({});
 const preview = ref('');
 const checkCurrentTheme = ref(document.body.classList[0]);
 
-const previewTheme = (theme, event) => {
+const previewTheme = (theme) => {
 	const { ColorScheme } = theme;
 
 	setTheme.value = {
@@ -53,31 +54,17 @@ const previewTheme = (theme, event) => {
 		textHighlight: ColorScheme.textHighlight,
 		textHighlightAlt: ColorScheme.textHighlightAlt,
 	};
-	// console.log(setTheme.value)
-};
-
-const revertTheme = () => {
-	// revert the theme back
 };
 
 const selectTheme = (theme) => {
-	// TODO
-	// Set to local storage on click
-	// Permenantly bind the styles onto the body
-
-	const body = document.body;
 	body.className = '';
 	body.setAttribute('style', preview.value.attributes.style.value);
 
 	body.classList.add('palette');
 
 	checkCurrentTheme.value = theme.Name;
+	localStorage.setItem('themePreference', theme.themeType);
 };
-
-// TODO
-// DONE: Set each card has their own theme
-// Trigger each card color schemes on hover
-// Add a close button or click outside of the overlay will close it
 </script>
 
 <style>

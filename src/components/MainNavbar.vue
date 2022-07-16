@@ -1,8 +1,9 @@
 <template>
-  <!-- pc view port -->
-  <!-- old navbar tags xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[5rem]  -->
   <section class="pt-2 navbar fixed w-full divCenter">
     <div class="2xl:flex flex-row py-3 px-3 hidden ml-20">
+      <!-- pc view port -->
+      <!-- old navbar tags xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[5rem]  -->
+
       <div>
         <h1 class="text-4xl font-bold">
           <router-link to="/" @click="Scroll_Top">Aaron</router-link>
@@ -59,7 +60,7 @@
       </div>
 
       <div class="rightSide flex flex-row">
-        <div class="has-dpdn px-[2rem]">
+        <div class="has-dpdn px-[2rem]" v-if="windowWidth <= 1536">
           <!-- select theme icon -->
           <NavbarIcons :selected-icon="'themeSelector'" />
         </div>
@@ -90,7 +91,7 @@
 <script>
 import anime from 'animejs/lib/anime.es.js';
 import NavbarIcons from './MainNavbarComponents/NavbarIcons.vue';
-import { nextTick } from 'vue';
+import { computed } from 'vue';
 
 export default {
 	components: {
