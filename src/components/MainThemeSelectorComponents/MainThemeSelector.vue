@@ -31,7 +31,7 @@
 <script setup>
 /* eslint-disable */
 import CardComponent from './MainThemeCardComponent.vue';
-import { defineEmits, defineProps, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
   isShowingThemeOverlay: {

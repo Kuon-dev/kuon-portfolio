@@ -54,7 +54,7 @@
             "textHighlight": "#a6e3a1",
             "textHighlightAlt": "#cba6f7"
         },
-        "themeType": "light"
+        "themeType": "dark"
     },
     {
         "Name": "Latte",
@@ -68,7 +68,7 @@
             "textHighlight": "#fe640b",
             "textHighlightAlt": "#7287fd"
         },
-        "themeType": "dark"
+        "themeType": "light"
     },
     {
         "Name": "Frappe",

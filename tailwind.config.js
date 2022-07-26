@@ -12,6 +12,9 @@ module.exports = {
 				'7xl': '4758px',
 				'8xl': '7516px',
 			},
+			colors: {
+				'hover-highlight': 'var(--text-highlight)',
+			},
 		},
 	},
 	plugins: [],

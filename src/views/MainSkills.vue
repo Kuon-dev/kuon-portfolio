@@ -59,7 +59,7 @@
               class="code-block-lines min-h-[10rem] w-[0.05rem] mx-2 sm:mx-3 flex selector leading-4 md:leading-6"
             />
             <!-- contents to render -->
-            <pre id="demo" class="px-1" ref="textField" />
+            <code id="demo" class="mr-10" ref="textField" />
           </div>
         </div>
 
@@ -75,8 +75,9 @@
 
 <script>
 import TypeIt from 'typeit';
+import Prism from 'prismjs';
 import 'animate.css';
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import SkillBarContent from '../components/SkillBarContent.vue';
 import Skills from '../components/MainSkillsContent.json';
 
@@ -127,6 +128,14 @@ export default {
 			return content;
 		});
 
+		onMounted(() => {
+			window.Prism = window.Prism || {};
+			window.Prism.manual = true;
+			setTimeout(() => {
+				Prism.highlightAll();
+			}, 5000);
+		});
+
 		return {
 			contentRenderer,
 			textField,
@@ -156,6 +165,29 @@ export default {
 			);
 			filter_contents = filter_contents.replaceAll('&lt;', '<');
 			filter_contents = filter_contents.replaceAll('&gt;', '>');
+			filter_contents = filter_contents.replaceAll('&nbsp;', '');
+
+			filter_contents = filter_contents.replaceAll(
+				'<span class="html-tag">div</span>',
+				'div'
+			);
+			filter_contents = filter_contents.replaceAll(
+				'<span class="html-attribute">class</span>',
+				'class'
+			);
+			filter_contents = filter_contents.replaceAll(
+				'<span class="html-tag">lable</span>',
+				'lable'
+			);
+			filter_contents = filter_contents.replaceAll(
+				'<span class="html-tag">input</span>',
+				'input'
+			);
+			filter_contents = filter_contents.replaceAll(
+				'<span class="html-attribute">placeholder</span>',
+				'placeholder'
+			);
+
 			const dom = document.createElement('div');
 			dom.innerHTML = filter_contents;
 			dom.classList.add('rendered-contents');
@@ -163,8 +195,65 @@ export default {
 		};
 
 		const animate_out = () => {
-			var con = document.querySelector('.rendered-contents');
+			const con = document.querySelector('.rendered-contents');
 			con.classList.replace('rendered-contents', 'rem-rendered-contents');
+		};
+
+		const syntaxHighlighter = () => {
+			let contents = document.getElementById('demo').innerHTML;
+
+			contents = contents.replaceAll(
+				'<span class="ti-cursor with-delay">|</span>',
+				''
+			);
+			// temporary remove highlight
+			contents = contents.replaceAll(
+				'<span class="html-tag">div</span>',
+				'div'
+			);
+			contents = contents.replaceAll(
+				'<span class="html-tag">lable</span>',
+				'lable'
+			);
+			contents = contents.replaceAll(
+				'<span class="html-tag">input</span>',
+				'input'
+			);
+			contents = contents.replaceAll(
+				'<span class="html-attribute">class</span>',
+				'class'
+			);
+			contents = contents.replaceAll(
+				'<span class="html-attribute">placeholder</span>',
+				'placeholder'
+			);
+
+			// add highlight
+			let filterContents = contents.replaceAll(
+				'class',
+				'<span class="html-attribute">class</span>'
+			);
+			filterContents = filterContents.replaceAll(
+				'placeholder',
+				'<span class="html-attribute">placeholder</span>'
+			);
+			filterContents = filterContents.replaceAll(
+				'div',
+				'<span class="html-tag">div</span>'
+			);
+			filterContents = filterContents.replaceAll(
+				'lable',
+				'<span class="html-tag">lable</span>'
+			);
+			filterContents = filterContents.replaceAll(
+				'input',
+				'<span class="html-tag">input</span>'
+			);
+
+			// add back the cursor or else the typeit will break
+			filterContents =
+        filterContents + '<span class="ti-cursor with-delay">|</span>';
+			document.getElementById('demo').innerHTML = filterContents;
 		};
 
 		new TypeIt('#demo', {
@@ -181,36 +270,135 @@ export default {
 			.type('<', { speed: 30 })
 			.type('div class=\'flex lg:flex-row flex-col\'>')
 			.break()
-			.type('   <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+			.type('&nbsp&nbsp<')
 			.type('div class=\'flex flex-row gap-4\'>')
 			.break()
-			.type('      <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp&nbsp&nbsp<')
 			.type('div class=\'bg-sky-600 px-2\'>1<')
 			.type('/div>')
 			.break()
-			.type('      <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp&nbsp&nbsp<')
 			.type('div class=\'bg-rose-600 px-2\'>2<')
 			.type('/div>')
 			.break()
-			.type('   <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp<')
 			.type('/div>')
 			.break()
-			.type('   <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp<')
 			.type('div class=\'flex flex-row gap-4\'>')
 			.break()
-			.type('      <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp&nbsp&nbsp<')
 			.type('div class=\'bg-lime-600 px-2\'>1<')
 			.type('/div>')
 			.break()
-			.type('      <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp&nbsp&nbsp<')
 			.type('div class=\'bg-teal-600 px-2\'>2<')
 			.type('/div>')
 			.break()
-			.type('   <')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
+			.type('&nbsp&nbsp<')
 			.type('/div>')
 			.break()
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
 			.type('<')
 			.type('/div>')
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
 			.pause(1000)
 			.exec(async () => {
 				await new Promise((resolve, reject) => {
@@ -222,12 +410,33 @@ export default {
 				});
 			})
 			.delete()
+			.pause(1000)
 			.type('<')
 			.type('lable> Email: <')
 			.type('/lable>')
 			.break()
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
 			.type('<')
 			.type('input placeholder=\'email\' class=\'p-1 w-20\'>', { speed: 50 })
+			.pause(1)
+			.exec(async () => {
+				await new Promise((resolve, reject) => {
+					syntaxHighlighter();
+					setTimeout(() => {
+						return resolve();
+					}, 1);
+				});
+			})
+
 			.pause(2000)
 			.exec(async () => {
 				await new Promise((resolve, reject) => {
@@ -282,5 +491,17 @@ export default {
   margin-bottom: 0.5rem;
   margin-right: 0.5rem;
   border-radius: 50%;
+}
+
+#demo .html-tag {
+  color: var(--text-highlight-2);
+}
+
+#demo .html-attribute {
+  color: var(--text-highlight);
+}
+
+#demo .html-class {
+  color: var(--text-highlight-2);
 }
 </style>

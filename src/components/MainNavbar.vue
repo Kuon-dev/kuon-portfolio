@@ -1,10 +1,11 @@
 <template>
-  <!-- pc view port -->
-  <!-- old navbar tags xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[5rem]  -->
   <section class="pt-2 navbar fixed w-full divCenter">
     <div class="2xl:flex flex-row py-3 px-3 hidden ml-20">
+      <!-- pc view port -->
+      <!-- old navbar tags xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[5rem]  -->
+
       <div>
-        <h1 class="text-4xl font-bold">
+        <h1 class="text-4xl font-bold headers">
           <router-link to="/" @click="Scroll_Top">Aaron</router-link>
         </h1>
       </div>
@@ -59,7 +60,7 @@
       </div>
 
       <div class="rightSide flex flex-row">
-        <div class="has-dpdn px-[2rem]">
+        <div class="has-dpdn px-[2rem]" v-if="windowWidth <= 1536">
           <!-- select theme icon -->
           <NavbarIcons :selected-icon="'themeSelector'" />
         </div>
@@ -74,7 +75,9 @@
               v-for="(value, index) in webRoutes"
               :key="index"
             >
-              <button class="dpdn_item md:text-2xl text-3xl">
+              <button
+                class="md:text-2xl text-3xl transition ease-in-out route-hover"
+              >
                 <router-link :to="value.route" @click="Scroll_Top">
                   {{ value.title }}
                 </router-link>
@@ -90,7 +93,7 @@
 <script>
 import anime from 'animejs/lib/anime.es.js';
 import NavbarIcons from './MainNavbarComponents/NavbarIcons.vue';
-import { nextTick } from 'vue';
+import { computed } from 'vue';
 
 export default {
 	components: {
@@ -154,7 +157,12 @@ export default {
   z-index: 50;
   left: 50%;
   transform: translateX(-50%);
+  transition: color 500ms ease-in-out;
   /* box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1); */
+}
+
+.navbar > * {
+  transition: color 500ms ease-in-out;
 }
 /* || drop down on focus  */
 /* ======================================================================= */
@@ -223,7 +231,6 @@ export default {
 }
 /* ======================================================================= */
 
-/* test css sections (make sure to delete stuff below lol) */
 html {
   scroll-behavior: smooth;
 }
@@ -236,5 +243,16 @@ html {
   color: var(--text-highlight);
   text-underline-offset: 4.1px;
   text-decoration-thickness: auto;
+}
+
+.route-hover :hover {
+  color: var(--text-highlight-2);
+  transition: color 500ms ease-in-out;
+}
+</style>
+
+<style scoped>
+.headers {
+  transition: color 500ms ease-in-out;
 }
 </style>
