@@ -1,9 +1,71 @@
+<template>
+  <div
+    class="3xl:px-[5rem] 4xl:px-[10rem] 5xl:px-[20rem] 6xl:px-[50rem] 7xl:px-[100rem] 8xl:px-[150rem]"
+    ref="baseModel"
+  >
+    <div
+      class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
+      :class="
+        isThemeLoaded
+          ? 'animate__animated animate__fadeInUp animate__fast'
+          : null
+      "
+    >
+      <div v-show="isThemeLoaded">
+        <Navbar @updateWindowSize="setWindowWidth($event)" />
+        <ThreeJS />
+      </div>
+      <div
+        v-show="!isThemeLoaded"
+        class="h-64"
+        :class="
+          isThemeLoaded
+            ? 'animate__animated animate__fadeOut animate__fast'
+            : null
+        "
+      >
+        <MainLoading @apply-theme="applyTheme" />
+      </div>
+
+      <div
+        class="pb-20 z-10 -mt-[5rem] -m-[3rem] px-5 sm:px-0 content-container"
+        :class="isThemeLoaded ? 'divCenter' : null"
+        :style="
+          windowWidth < 1280
+            ? null
+            : {
+                'padding-left': paddingValue - 50 + 'px',
+                'padding-right': paddingValue - 50 + 'px',
+              }
+        "
+      >
+        <!-- contents -->
+        <router-view v-slot="{ Component }" v-if="isThemeLoaded">
+          <transition
+            mode="out-in"
+            enter-active-class="animate__animated animate__fadeInUp animate__fast"
+            leave-active-class="animate__animated animate__fadeOutDown animate__fast"
+          >
+            <component :is="Component" :responsive-value="paddingValue" />
+          </transition>
+        </router-view>
+
+        <div v-if="!isThemeLoaded">
+          <MainSkeletonLoader />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import ThreeJS from './components/ThreeJs.vue';
 import Navbar from './components/MainNavbar.vue';
 import 'animate.css';
 import { ref, onMounted, computed } from 'vue';
 import Themes from './components/MainThemeSelectorComponents/Themes.json';
+import MainLoading from './views/MainLoading.vue';
+import MainSkeletonLoader from './views/MainSkeletonLoader.vue';
 
 const body = document.body;
 const setTheme = ref({});
@@ -14,19 +76,28 @@ const isThemeLoaded = ref(false);
 const isThemeSelected = ref(false);
 
 const setDefaultTheme = () => {
+	// stop applying if the placeholder theme is removed
 	if (body.className !== 'placeholder-theme') return;
+	// get a random theme
 	const randomTheme = themesData[Math.floor(Math.random() * themesData.length)];
+	// based on the user preference
 	const userPreferTheme = localStorage.getItem('themePreference');
+
 	if (randomTheme.themeType === userPreferTheme || userPreferTheme === null) {
 		isThemeSelected.value = true;
 		setTheme.value = randomTheme.ColorScheme;
-		setTimeout(() => {
-			body.setAttribute('style', baseModel.value.attributes.style.value);
-			isThemeLoaded.value = true;
-		}, 1000);
 	} else {
+		// recurse
 		setDefaultTheme();
 	}
+};
+
+const applyTheme = () => {
+	body.setAttribute('style', baseModel.value.attributes.style.value);
+	isThemeLoaded.value = true;
+	body.className = '';
+	body.classList.add('set-palette');
+	console.log('Theme applied');
 };
 
 setDefaultTheme();
@@ -52,9 +123,7 @@ export default {
 			this.setDefaultPadding();
 			this.setDefaultWidth();
 			const body = document.body;
-			body.className = '';
-			body.classList.add('set-palette');
-		}, 100);
+		}, 1000);
 	},
 
 	beforeDestroy() {
@@ -92,59 +161,6 @@ export default {
 	},
 };
 </script>
-
-<template>
-  <div
-    class="3xl:px-[5rem] 4xl:px-[10rem] 5xl:px-[20rem] 6xl:px-[50rem] 7xl:px-[100rem] 8xl:px-[150rem]"
-    ref="baseModel"
-  >
-    <div
-      class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
-      v-show="isThemeLoaded"
-      :class="
-        isThemeLoaded
-          ? 'animate__animated animate__fadeInUp animate__fast'
-          : null
-      "
-    >
-      <Navbar @updateWindowSize="setWindowWidth($event)" />
-      <ThreeJS />
-      <div
-        class="pb-20 z-10 -mt-[5rem] -m-[3rem] divCenter px-5 sm:px-0 content-container"
-        :style="
-          windowWidth < 1280
-            ? null
-            : {
-                'padding-left': paddingValue - 50 + 'px',
-                'padding-right': paddingValue - 50 + 'px',
-              }
-        "
-      >
-        <!-- contents -->
-        <router-view v-slot="{ Component }">
-          <transition
-            mode="out-in"
-            enter-active-class="animate__animated animate__fadeInUp animate__fast"
-            leave-active-class="animate__animated animate__fadeOutDown animate__fast"
-          >
-            <component :is="Component" :responsive-value="paddingValue" />
-          </transition>
-        </router-view>
-      </div>
-    </div>
-
-    <div
-      v-show="!isThemeLoaded"
-      :class="
-        isThemeLoaded
-          ? 'animate__animated animate__fadeOut animate__fast'
-          : null
-      "
-    >
-      Loading
-    </div>
-  </div>
-</template>
 
 <style>
 @import '../public/catppuccin.css';

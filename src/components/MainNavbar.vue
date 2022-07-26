@@ -238,6 +238,7 @@ html {
 .router-link-exact-active {
   /* color: white; */
   font-weight: bold;
+  text-decoration: underline;
   cursor: default;
   color: var(--text-highlight);
   text-underline-offset: 4.1px;
