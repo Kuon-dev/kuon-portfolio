@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-32 div-center w-full overflow-hidden">
+  <div class="pt-32 div-center w-full overflow-hidden animate-pulse">
     <div class="w-96">
       <p class="text-2xl mt-2 ml-5">loading...</p>
       <div class="w-full mt-2 border-2 rounded-lg loading-container">
@@ -25,13 +25,13 @@ export default {
 			const mutateLoading = anime({
 				targets: '.loading-view',
 				easing: 'easeInOutQuad',
-				duration: 5000,
+				duration: 1500,
 				width: '100%',
 			});
 
 			setTimeout(() => {
 				this.setApplyTheme();
-			}, 6000);
+			}, 2000);
 		};
 
 		setTimeout(animation, 500);
