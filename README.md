@@ -1,5 +1,6 @@
 
 # Portfolio
+
 This is my portfolio powered by Vue3, TailwindCSS, ThreeJS and AnimeJS.
 
 All of the features within this project are frontend only, there are no involvement with any backend frameworks or similar.
@@ -10,7 +11,9 @@ View the production deployment of this project on [here](https://kuon-dev-portfo
   <img src="./doc/preview.png" alt="preview" />
   <br>
 </h2>
+
 ---
+
 ## Prerequisites
 `Git` and `NodeJS` is required. I recommend installing both of these programs through a package manager.
 
