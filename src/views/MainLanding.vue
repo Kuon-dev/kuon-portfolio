@@ -76,23 +76,6 @@
         </p>
       </div>
     </section>
-
-    <!-- philosophy section  -->
-    <section class="hidden">
-      <h2
-        class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
-      >
-        Philosophy
-      </h2>
-      <br />
-      <p class="lg:text-lg text-sm text-justify leading-6">
-        &nbsp;&nbsp;&nbsp;&nbsp; Aaron thinks that the technology will continue
-        to evolve, web development industry will stay relevant for a long time,
-        but the technology used to develop web applications will constantly
-        change. He believes that a web developer must be agile and willing to
-        learn and adapt to changes to stay relevant on the industry.
-      </p>
-    </section>
   </div>
 </template>
 

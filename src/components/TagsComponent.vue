@@ -4,7 +4,7 @@
       <li
         v-for="(value, index) in tagSettings"
         :key="index"
-        class="lg:text-md text-sm text-center selector rounded-md xl:p-3 xl:px-4 p-2 px-3 cursor-default"
+        class="tags lg:text-md text-sm text-center selector rounded-md xl:p-3 xl:px-4 p-2 px-3 cursor-default transition ease-in-out hover:rotate-6"
       >
         {{ value }}
       </li>
@@ -24,4 +24,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.tags:hover {
+  color: var(--text-highlight-2);
+}
+</style>
