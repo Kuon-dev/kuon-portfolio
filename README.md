@@ -17,6 +17,7 @@ View the production deployment of this project on [here](https://kuon-dev-portfo
 - Interactive 3D model and UI
 - Auto code typing + custom syntax highlighting
 - Highly customizable with theme selector
+- Flexible responsive design 
 
 ---
 
