@@ -13,6 +13,13 @@ View the production deployment of this project on [here](https://kuon-dev-portfo
 </h2>
 
 
+## Featrues 
+- Interactive 3D model and UI
+- Auto code typing + custom syntax highlighting
+- Highly customizable with theme selector
+
+---
+
 ## Prerequisites
 `Git` and `NodeJS` is required. I recommend installing both of these programs through a package manager.
 
