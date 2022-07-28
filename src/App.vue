@@ -6,24 +6,18 @@
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
       :class="
-        isThemeLoaded
+        setAnimate && isThemeLoaded
           ? 'animate__animated animate__fadeInUp animate__fast'
           : null
       "
+      ref="baseContainer"
     >
-      <div v-show="isThemeLoaded">
-        <Navbar @updateWindowSize="setWindowWidth($event)" />
-        <ThreeJS />
-      </div>
-      <div
-        v-show="!isThemeLoaded"
-        class="h-64"
-        :class="
-          isThemeLoaded
-            ? 'animate__animated animate__fadeOut animate__fast'
-            : null
-        "
-      >
+      <Navbar
+        @updateWindowSize="setWindowWidth($event)"
+        v-show="isThemeLoaded"
+      />
+      <ThreeJS v-show="isThemeLoaded" />
+      <div v-show="!isThemeLoaded" class="h-64">
         <MainLoading @apply-theme="applyTheme" />
       </div>
 
@@ -62,7 +56,7 @@
 import ThreeJS from './components/ThreeJs.vue';
 import Navbar from './components/MainNavbar.vue';
 import 'animate.css';
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import Themes from './components/MainThemeSelectorComponents/Themes.json';
 import MainLoading from './views/MainLoading.vue';
 import MainSkeletonLoader from './views/MainSkeletonLoader.vue';
@@ -74,6 +68,7 @@ const themesData = Themes;
 
 const isThemeLoaded = ref(false);
 const isThemeSelected = ref(false);
+const baseContainer = ref('');
 
 const setDefaultTheme = () => {
 	// stop applying if the placeholder theme is removed
@@ -101,6 +96,13 @@ const applyTheme = () => {
 };
 
 setDefaultTheme();
+
+onMounted(() => {
+	setTimeout(() => {
+		const { classList } = baseContainer.value;
+		// classList.remove('animate__animated ')
+	}, 2500);
+});
 </script>
 
 <script>
@@ -111,6 +113,7 @@ export default {
 			windowWidth: window.innerWidth,
 			paddingValue: 0,
 			setRoutingResizeDelay: false,
+			setAnimate: true,
 		};
 	},
 
@@ -124,6 +127,12 @@ export default {
 			this.setDefaultWidth();
 			const body = document.body;
 		}, 1000);
+
+		// the animation disables the fix heaader bar actually
+
+		setTimeout(() => {
+			this.setAnimate = false;
+		}, 4000);
 	},
 
 	beforeDestroy() {

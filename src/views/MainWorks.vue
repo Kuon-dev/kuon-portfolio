@@ -27,7 +27,7 @@
         <div class="xl:max-w-[40rem] w-auto 2xl:block hidden">
           <img
             :src="value.Image"
-            class="bg-auto bg-center rounded-md border-2"
+            class="bg-auto bg-center rounded-md border-2 min-w-32"
           />
           <TagsComponent :tagSettings="value.Tags" class="pt-3" />
         </div>

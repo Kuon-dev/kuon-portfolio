@@ -29,9 +29,10 @@
         <div class="w-[30rem]"></div>
       </div>
       <!-- select theme icon && dropdown -->
-      <div class="rightSide has-dpdn">
+      <div class="rightSide flex flex-row gap-4">
         <!-- select theme icon -->
         <NavbarIcons :selected-icon="'themeSelector'" />
+        <NavbarIcons :selected-icon="'gitSource'" />
         <!-- drop down section  -->
       </div>
     </div>
@@ -59,10 +60,13 @@
         />
       </div>
 
-      <div class="rightSide flex flex-row">
-        <div class="has-dpdn px-[2rem]" v-if="windowWidth <= 1536">
+      <div class="rightSide flex flex-row gap-4">
+        <div class="has-dpdn" v-if="windowWidth <= 1536">
           <!-- select theme icon -->
           <NavbarIcons :selected-icon="'themeSelector'" />
+        </div>
+        <div class="has-dpdn" v-if="windowWidth <= 1536">
+          <NavbarIcons :selected-icon="'gitSource'" />
         </div>
         <!-- drop down section  -->
         <div class="has-dpdn">

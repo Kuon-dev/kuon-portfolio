@@ -19,8 +19,9 @@
           class="font-bold whitespace-nowrap"
           :class="isHovering ? 'flex' : 'hidden'"
         >
+          <!-- this is meant to show duration or other info on hovered -->
           <!-- eslint-disable-next-line -->
-          {{ duration ? duration : 'not specified' }}
+          {{ title }}
         </div>
       </div>
     </div>

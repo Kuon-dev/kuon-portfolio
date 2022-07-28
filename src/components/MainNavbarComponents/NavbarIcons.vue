@@ -24,6 +24,20 @@
       </button>
     </div>
 
+    <div v-else-if="selectedIcon === 'gitSource'">
+      <button
+        class="border-2 rounded-md p-[0.35rem] svg_border"
+        onclick="window.open('https://github.com/Kuon-dev/kuon-portfolio/tree/main');"
+      >
+        <img
+          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+          class="svgColor inline min-w-[25px] min-h-[25px]"
+          width="20px"
+          height="20px"
+        />
+      </button>
+    </div>
+
     <div v-else></div>
 
     <div v-if="selectedIcon === 'themeSelector'">
