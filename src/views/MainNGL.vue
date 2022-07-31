@@ -2,9 +2,9 @@
   <div class="divCenter flex-col pt-10">
     <form
       @submit.prevent="submitHandler($event)"
-      class="question-container flex flex-col py-10 px-10 selector max-w-[25rem]"
+      class="question-container flex flex-col py-10 sm:px-10 px-8 selector max-w-[18rem] sm:max-w-[25rem]"
     >
-      <lable class="text-2xl py-5 text-center font-bold"
+      <lable class="text-xl sm:text-2xl sm:py-5 text-center font-bold"
         >Send me an anonymous message!</lable
       >
       <textarea
@@ -15,7 +15,7 @@
         class="border-2 rounded-lg py-2 px-5 h-auto text-xl mt-5"
       >
       </textarea>
-      <div ref="hasError" class="mt-5 text-center error-text"></div>
+      <div ref="hasError" class="sm:mt-5 text-center error-text"></div>
       <div class="m-auto">
         <button class="">submit</button>
       </div>
@@ -28,7 +28,7 @@
       >
         <CardComponent
           ref="submittedQuestions"
-          class="px-3 sm:px-5 py-3 left-border-one transition ease-in-out delay-100 flex"
+          class="px-1 sm:px-5 py-3 left-border-one transition ease-in-out delay-100 flex"
           v-for="data in submittedQuestions"
           :key="data.id"
           :title="data.question"
@@ -62,7 +62,7 @@ export default {
 				return;
 			}
 
-			const specialChars = /[`@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/~]/;
+			const specialChars = /[`@#$%^&*()_\[\]{};':"\\|<>\/~]/;
 			if (specialChars.test(value)) {
 				hasError.value.innerHTML = 'Special characters are not allowed';
 				return;

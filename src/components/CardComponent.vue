@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="selector w-[10rem] py-1 pt-2 rounded-lg transition ease-in-out border-wrapper-hover"
+      class="selector py-1 pt-2 rounded-lg transition ease-in-out border-wrapper-hover"
       @mouseenter="isHovering = true"
       @mouseleave="
         isHovering = false;
@@ -10,8 +10,8 @@
       @click="isClicked = !isClicked"
       :class="[
         isParagraph
-          ? 'px-2 overflow-y-scroll h-[9rem] icon-highlight-focus'
-          : 'div-center hover:rotate-6 h-[8rem] icon-highlight hover:border-2',
+          ? 'px-2 overflow-y-scroll h-[12rem] w-[12rem] icon-highlight-focus'
+          : 'div-center hover:rotate-6 w-[10rem] h-[8rem] icon-highlight hover:border-2',
         isClicked && isParagraph
           ? 'icon-highlight border-2'
           : 'paragraph-option'
@@ -27,7 +27,7 @@
         </p>
       </div>
       <div v-else>
-        <div class="transition ease-in-out">
+        <div class="transition ease-in-out px-2 text-lg">
           {{ isClicked ? argOne : title }}
         </div>
       </div>
@@ -110,7 +110,7 @@ export default {
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
+    background-color: var(--text-highlight-2);
     border-radius: 20px;
     border: 6px solid transparent;
     background-clip: content-box;
