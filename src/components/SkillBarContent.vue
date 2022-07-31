@@ -40,9 +40,7 @@
               class="px-2 sm:px-5 py-2 left-border-one transition ease-in-out delay-100 flex"
               :class="selectedLang === tech.title ? 'left-border-two' : null"
               :title="tech.title"
-              :description="tech.description"
               :image="tech.image"
-              :duration="tech.duration"
             >
             </CardComponent>
           </div>
@@ -59,25 +57,25 @@ import { computed } from 'vue';
 export default {
 	name: 'SkillBarContent',
 	components: {
-		CardComponent,
+		CardComponent
 	},
 	props: {
 		title: {
 			type: String,
-			required: false,
+			required: false
 		},
 		description: {
 			type: String,
-			required: false,
+			required: false
 		},
 		duration: {
 			type: String,
-			required: false,
+			required: false
 		},
 		image: {
 			type: String,
-			required: false,
-		},
+			required: false
+		}
 	},
 	data() {
 		return {
@@ -86,11 +84,11 @@ export default {
 			isSkillActive: {
 				frontend: false,
 				backend: false,
-				tools: false,
+				tools: false
 			},
 			isHoveringNavbar: false,
 			selectedTech: this.currentSelectedTechnology(0),
-			selectedLang: this.currentSelectedLang(),
+			selectedLang: this.currentSelectedLang()
 		};
 	},
 	setup() {},
@@ -121,28 +119,28 @@ export default {
 		setDefaultSelectLang(index) {
 			const test = this.skillData[index].technologies[0].title;
 			this.selectedLang = test;
-		},
-	},
+		}
+	}
 };
 </script>
 
 <style>
-.selector-bg-hover:hover {
-  background-color: var(--bg-sel);
-}
+  .selector-bg-hover:hover {
+    background-color: var(--bg-sel);
+  }
 
-.left-border-one {
-  border-color: var(--text-highlight);
-}
+  .left-border-one {
+    border-color: var(--text-highlight);
+  }
 
-.left-border-two {
-  border-color: var(--text-highlight-2) !important;
-}
+  .left-border-two {
+    border-color: var(--text-highlight-2) !important;
+  }
 
-.div-right {
-  right: 0;
-  margin-left: auto;
-  margin-right: 0;
-  float: right;
-}
+  .div-right {
+    right: 0;
+    margin-left: auto;
+    margin-right: 0;
+    float: right;
+  }
 </style>

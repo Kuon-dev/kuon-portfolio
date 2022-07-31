@@ -1,11 +1,11 @@
 {
     "bracketSpacing": true,
     "singleQuote": true,
-    "trailingComma": "es5",
+    "trailingComma": "none",
     "tabWidth": 4,
     "semi": true,
     "arrowParens": "always",
-    "vueIndentScriptAndStyle": false,
+    "vueIndentScriptAndStyle": true,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "SimonSiefke.prettier-vscode",
 
