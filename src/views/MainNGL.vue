@@ -42,7 +42,6 @@
 
 <script>
 import { computed, ref } from 'vue';
-import 'Axios';
 import CardComponent from '../components/CardComponent.vue';
 
 export default {
