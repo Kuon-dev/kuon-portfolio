@@ -39,153 +39,222 @@
         to view my projects posted on Github
       </p>
     </section>
+    <section class="pt-10">
+      <div class="">
+        <h2
+          class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
+        >
+          Send me a message!
+        </h2>
+      </div>
+      <div class="divCenter pt-10">
+        <form class="w-full max-w-lg">
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="block uppercase tracking-wide text-xs font-bold mb-2"
+                for="grid-first-name"
+              >
+                First Name
+              </label>
+              <input
+                class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                v-model="firstName"
+                type="text"
+                placeholder="Jane"
+              />
+              <p class="text-red-500 text-xs italic" v-if="showNoFirstName">
+                Please fill out this field.
+              </p>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label
+                class="block uppercase tracking-wide text-xs font-bold mb-2"
+                for="grid-last-name"
+              >
+                Last Name (optional)
+              </label>
+              <input
+                class="appearance-none block w-full border rounded py-3 px-4 leading-tight focus:outline-none"
+                v-model="lastName"
+                type="text"
+                placeholder="Doe"
+              />
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label
+                class="block uppercase tracking-wide text-xs font-bold mb-2"
+                for="grid-password"
+              >
+                E-mail
+              </label>
+              <input
+                class="appearance-none block w-full border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                v-model="userEmail"
+                type="email"
+              />
+              <p class="text-red-500 text-xs italic" v-if="showNoEmail">
+                Please fill out this field.
+              </p>
+              <p class="text-red-500 text-xs italic" v-if="showInvalidEmail">
+                Email entered is invalid
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label
+                class="block uppercase tracking-wide text-xs font-bold mb-2"
+                for="grid-password"
+              >
+                Message
+              </label>
+              <textarea
+                class="no-resize block w-full appearance-none border rounded py-3 px-4 mb-3 leading-tight focus:outline-none h-48 resize-none"
+                placeholder="Enter your message here"
+                v-model="userText"
+              />
+              <p class="text-red-500 text-xs italic" v-if="showNoMessage">
+                Please fill out this field.
+              </p>
+            </div>
+          </div>
+          <div class="md:flex md:items-center">
+            <div class="md:w-2/3">
+              <button
+                class="shadow focus:shadow-outline focus:outline-none font-bold py-4 px-10 rounded"
+                @click.prevent="submitHandler($event)"
+              >
+                Submit
+              </button>
+              <p class="text-red-500 text-xs italic pt-5" v-if="failedPost">
+                An error has occurred, please try again later.
+              </p>
+              <p class="success text-md pt-5" v-if="showPostSuccess">
+                Your message has been received!
+              </p>
+            </div>
+            <div class="md:w-1/3"></div>
+          </div>
+        </form>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+import { ref, computed } from 'vue';
 
 export default {
-	mounted() {
-		/*
-        console.clear()
-    	//const scene = new THREE.Scene();
-		// const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-		const camera = new THREE.PerspectiveCamera( 75, 2, 0.1, 1000 );
-		camera.position.x = 30;
-		camera.position.y = 20;
-		camera.position.z = -25;
+	setup() {
+		const backendPort = import.meta.env.VITE_API_ENDPOINT;
+		const url = backendPort + '/message';
 
-		//loader
-		// const dracoLoader = new DRACOLoader();
-		// dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
+		const failedPost = ref(false);
 
-		const loader = new GLTFLoader()
-		// loader.setDRACOLoader( dracoLoader );
-		loader.load( './src/assets/contact_me/scene.gltf', function ( gltf ) {
-		// loader.load( './src/assets/room/scene.gltf', function ( gltf ) {
-			const model = gltf.scene;
-			model.traverse( function ( child ) {
-				if ( child.isMesh) {
-					child.castShadow = true;
-					child.receiveShadow = true;
-				}
-			})
-			// position the model from the camera
-			model.position.set( 5, 0, 0 );
-			model.scale.set( 0.25, 0.25, 0.25 ); //model size
-			scene.add( gltf.scene );
+		const firstName = ref('');
+		const lastName = ref('');
+		const userEmail = ref('');
+		const userText = ref('');
 
-		}, undefined, function ( error ) {
-			console.error( error );
-		} );
+		const showNoFirstName = ref(false);
+		const showNoEmail = ref(false);
+		const showNoMessage = ref(false);
+		const showInvalidEmail = ref(false);
+		const showPostSuccess = ref(false);
 
-		// const renderer = new THREE.WebGLRenderer();
-		// renderer.setSize( window.innerWidth, window.innerHeight );
+		const submitHandler = (e) => {
+			showNoFirstName.value = false;
+			showNoEmail.value = false;
+			showNoMessage.value = false;
+			showInvalidEmail.value = false;
+			showPostSuccess.value = false;
 
-		// add to HTML viewer
-		// const container = document.body;
-		const container = document.getElementById( '' );
-		//container.appendChild( renderer.domElement ); // may need to change to append this on the right element
+			if (!firstName.value) showNoFirstName.value = true;
+			if (!userEmail.value) showNoEmail.value = true;
+			if (!userText.value) showNoMessage.value = true;
+			// if any input are empty
+			if (showNoMessage.value || showNoEmail.value || showNoFirstName.value)
+				return;
+			const emailValidator = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+			const validEmail = userEmail.value.match(emailValidator);
+			if (!validEmail) {
+				showInvalidEmail.value = true;
+				return;
+			}
 
+			const payload = {
+				firstName: firstName.value,
+				lastName: lastName.value ?? '',
+				userEmail: userEmail.value,
+				userMessage: userText.value
+			};
 
-		// three js renderer and size on the element
-		const renderer = new THREE.WebGLRenderer( { antialias: true }, { alpha: true }  );
-			renderer.setPixelRatio( window.devicePixelRatio );
-			// renderer.setSize( window.innerWidth, window.innerHeight );
-			renderer.outputEncoding = THREE.sRGBEncoding;
-			renderer.setSize( 600, 600/2) // size
-			renderer.shadowMap.enabled = true;
-			renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-			container.appendChild( renderer.domElement );
-			renderer.setClearColor( 0x000000, 0 ); // set transparent bg
-			renderer.physicallyCorrectLights = true;
-
-		// attempt to add sadows
-		const pmremGenerator = new THREE.PMREMGenerator( renderer );
-
-			const scene = new THREE.Scene();
-			// scene.background = new THREE.Color( 0xbfe3dd );
-			// scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 5 ).texture;
-
-		const ambientLight = new THREE.AmbientLight( 0xF4E99B, 1)
-		scene.add( ambientLight );
-
-		// lightning and casting shadows
-		const light = new THREE.DirectionalLight( 0xFFE3AC, 2)
-			light.position.set(30, 50, -105);
-			light.target.position.set(5, 0, 0);
-			light.castShadow = true;
-
-			light.shadow.mapSize.width = 512; // default
-			light.shadow.mapSize.height = 512; // default
-			// light.shadowCameraLeft = -30;
-			// light.shadowCameraRight = 30;
-			// light.shadowCameraTop = 35;
-			// light.shadowCameraBottom = -30;
-			scene.add( light );
-			scene.add( light.target )
-
-		// helpers
-		const controls = new OrbitControls(camera, renderer.domElement) // allow users to view around the model
-			// controls.enablePan = false;
-			controls.enableDamping = true; // adds a physic effect of "inertia" when spinning camera
-			controls.maxPolarAngle = (Math.PI/2) - 0.3; // don't let user view below the ground, 0.3 is slightly above the base level
-			controls.minDistance = 40; // don't let user zoom too close
-			controls.maxDistance = 40;  // don't let user zoom too far away
-            controls.minAzimuthAngle = 1.5; // radians
-            controls.maxAzimuthAngle = (Math.PI); // radians; // radians            
-			controls.enableRotate = true;
-			controls.rotateSpeed = 0.1; // set rotation speed of the mouse
-
-			controls.autoRotateSpeed = 1.5; // 30 seconds per orbit when fps is 60
-
-		// grid helper
-		const gridHelper = new THREE.GridHelper(200, 50) // add a grid 
-		// light helper
-		const helper = new THREE.DirectionalLightHelper( light, 5 );
-		// scene.add( gridHelper );
-		// scene.add( helper );
-		
-		// responsive design
-		window.onresize = function () {
-		const width = window.innerWidth/2;
-		const height = window.innerHeight/2;
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
-		renderer.setSize( width, height );
-		}
-		// trigger a resize on load 
-		window.onload = function () {
-			const width = window.innerWidth/2;
-			const height = window.innerHeight/2;
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-			renderer.setSize( width, height );
-		}
-
-		function animate() {
-			requestAnimationFrame( animate );
-
-			// cube.rotation.x += 0.01;
-			//cube.rotation.y += 0.01;
-			controls.update();
-			renderer.render( scene, camera );
+			(async () => {
+				const rawResponse = await fetch(url, {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(payload)
+				})
+					.then((response) => response.json())
+					.catch((error) => {
+						console.log(error);
+						failedPost.value = true;
+					});
+				if (!failedPost.value) showPostSuccess.value = true;
+			})();
 		};
-		animate();
 
-		// setup loading page
-		*/
-	},
+		return {
+			submitHandler,
+			firstName,
+			lastName,
+			userEmail,
+			userText,
+			showNoFirstName,
+			showNoEmail,
+			showNoMessage,
+			showInvalidEmail,
+			showPostSuccess,
+			failedPost
+		};
+	}
 };
 </script>
 
-<style>
-hr {
-  border-color: var(--text);
-}
+<style scoped>
+  hr {
+    border-color: var(--text);
+  }
+
+  input {
+    background-color: var(--bg-sel);
+    border-color: var(--text-highlight);
+  }
+
+  input:focus {
+    border-color: var(--text-highlight-2);
+  }
+
+  textarea {
+    background-color: var(--bg-sel);
+    border-color: var(--text-highlight);
+  }
+
+  textarea:focus {
+    border-color: var(--text-highlight-2);
+  }
+
+  button {
+    background-color: var(--bg-sel);
+  }
+
+  .success {
+    color: var(--text-highlight);
+  }
 </style>

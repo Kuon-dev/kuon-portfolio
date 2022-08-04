@@ -50,7 +50,9 @@ export default {
 		CardComponent
 	},
 	setup() {
-		const url = 'http://localhost:4000/ngl';
+		const backendPort = import.meta.env.VITE_API_ENDPOINT;
+		const url = backendPort + '/ngl';
+
 		const hasError = ref('');
 
 		const submitHandler = (e) => {
