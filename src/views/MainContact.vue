@@ -171,6 +171,7 @@ export default {
 			showNoMessage.value = false;
 			showInvalidEmail.value = false;
 			showPostSuccess.value = false;
+			failedPost.value = false;
 
 			if (!firstName.value) showNoFirstName.value = true;
 			if (!userEmail.value) showNoEmail.value = true;
