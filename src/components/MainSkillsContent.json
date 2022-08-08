@@ -4,44 +4,30 @@
         "technologies": [
             {
                 "title": "React",
-                "description": "React is a popular Javascript framework",
-                "duration": "3 months",
                 "image": "devicon-react-original"
             },
             {
                 "title": "Vue",
-                "description": "",
-                "duration": "6 months",
                 "image": "devicon-vuejs-plain"
             },
             {
                 "title": "ThreeJS",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-threejs-original"
             },
             {
                 "title": "Javascript (ES6)",
-                "description": "",
-                "duration": "1 year",
                 "image": "devicon-javascript-plain"
             },
             {
                 "title": "HTML5",
-                "description": "",
-                "duration": "1 year",
                 "image": "devicon-html5-plain"
             },
             {
                 "title": "CSS3",
-                "description": "",
-                "duration": "1 year",
                 "image": "devicon-css3-plain"
             },
             {
                 "title": "Tailwind",
-                "description": "",
-                "duration": "6 months",
                 "image": "devicon-tailwindcss-plain"
             }
         ]
@@ -51,32 +37,22 @@
         "technologies": [
             {
                 "title": "Python",
-                "description": "",
-                "duration": "6 months",
                 "image": "devicon-python-plain"
             },
             {
                 "title": "Node",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-nodejs-plain"
             },
             {
                 "title": "Java",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-java-plain"
             },
             {
                 "title": "MongoDB",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-mongodb-plain"
             },
             {
                 "title": "Laravel",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-laravel-plain"
             }
         ]
@@ -86,26 +62,18 @@
         "technologies": [
             {
                 "title": "Markdown",
-                "description": "",
-                "duration": "1 year",
                 "image": "devicon-markdown-original"
             },
             {
                 "title": "Vim",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-vim-plain"
             },
             {
                 "title": "Figma",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-figma-plain"
             },
             {
                 "title": "Linux (Arch)",
-                "description": "",
-                "duration": "3 months",
                 "image": "devicon-linux-plain"
             }
         ]
