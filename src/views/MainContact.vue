@@ -39,7 +39,7 @@
         to view my projects posted on Github
       </p>
     </section>
-    <section class="pt-10">
+    <section class="pt-10 hidden">
       <div class="">
         <h2
           class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
@@ -145,10 +145,14 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 export default {
 	setup() {
+		// link your backend port API in the dotenv file, otherwise you won't be able to receive messages
+		// for example in .env file
+		// VITE_API_ENDPOINT = http://localhost:4000
+
 		const backendPort = import.meta.env.VITE_API_ENDPOINT;
 		const url = backendPort + '/message';
 
@@ -166,6 +170,7 @@ export default {
 		const showPostSuccess = ref(false);
 
 		const submitHandler = (e) => {
+			// reset user input
 			showNoFirstName.value = false;
 			showNoEmail.value = false;
 			showNoMessage.value = false;
@@ -173,12 +178,16 @@ export default {
 			showPostSuccess.value = false;
 			failedPost.value = false;
 
+			// display error message if input is empty
 			if (!firstName.value) showNoFirstName.value = true;
 			if (!userEmail.value) showNoEmail.value = true;
 			if (!userText.value) showNoMessage.value = true;
-			// if any input are empty
+
+			// if any input are empty stop the function
 			if (showNoMessage.value || showNoEmail.value || showNoFirstName.value)
 				return;
+
+			// email regex
 			const emailValidator = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 			const validEmail = userEmail.value.match(emailValidator);
 			if (!validEmail) {
@@ -186,6 +195,7 @@ export default {
 				return;
 			}
 
+			// payload for post request
 			const payload = {
 				firstName: firstName.value,
 				lastName: lastName.value ?? '',
@@ -229,6 +239,7 @@ export default {
 </script>
 
 <style scoped>
+  /* scoped so the styles aren't global and only applied on this file */
   hr {
     border-color: var(--text);
   }

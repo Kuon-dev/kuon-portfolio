@@ -35,12 +35,6 @@ export default createRouter({
 			props: true
 		},
 		{
-			path: '/ngl',
-			name: 'ngl',
-			component: ngl,
-			props: true
-		},
-		{
 			path: '/:pathMatch(.*)*',
 			name: 'notfound',
 			component: notfound,
