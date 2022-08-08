@@ -75,7 +75,7 @@
 
 <script>
 import TypeIt from 'typeit';
-import Prism from 'prismjs';
+// import Prism from 'prismjs';
 import 'animate.css';
 import { ref, computed, onMounted } from 'vue';
 import SkillBarContent from '../components/SkillBarContent.vue';
@@ -86,23 +86,23 @@ export default {
 		return {
 			skillsData: Skills,
 			paddingValue: 0,
-			loaded: false,
+			loaded: false
 		};
 	},
 	props: {
 		responsiveValue: {
 			type: Number,
-			default: 0,
-		},
+			default: 0
+		}
 	},
 
 	components: {
-		SkillBarContent,
+		SkillBarContent
 	},
 	methods: {
 		fetch: function () {
 			console.log(document.getElementById('render'));
-		},
+		}
 	},
 
 	setup() {
@@ -120,7 +120,7 @@ export default {
 		const renderOutTextField = computed(() => {
 			if (
 				textField.value.innerText === null ||
-        textField.value.innerText === undefined
+          textField.value.innerText === undefined
 			)
 				return null;
 			let content = textField.value.innerText;
@@ -141,7 +141,7 @@ export default {
 			textField,
 			clearCodeBlock,
 			clearTerminalBlock,
-			renderOutTextField,
+			renderOutTextField
 		};
 	},
 
@@ -152,7 +152,7 @@ export default {
 			} else if (this.windowWidth < 1280) {
 				this.paddingValue = 0;
 			}
-		},
+		}
 	},
 
 	mounted() {
@@ -252,7 +252,7 @@ export default {
 
 			// add back the cursor or else the typeit will break
 			filterContents =
-        filterContents + '<span class="ti-cursor with-delay">|</span>';
+          filterContents + '<span class="ti-cursor with-delay">|</span>';
 			document.getElementById('demo').innerHTML = filterContents;
 		};
 
@@ -261,13 +261,14 @@ export default {
 			waitUntilVisible: true,
 			startDelay: 2000,
 			startDelete: true,
-			loop: true,
+			loop: true
 			// remove cursor when finished
 			// afterComplete: function (instance) {
 			//     instance.destroy();
 			// }
 		})
 			.type('<', { speed: 30 })
+		// line 1
 			.type('div class=\'flex lg:flex-row flex-col\'>')
 			.break()
 			.pause(1)
@@ -280,6 +281,8 @@ export default {
 				});
 			})
 			.type('&nbsp&nbsp<')
+
+		// line 2
 			.type('div class=\'flex flex-row gap-4\'>')
 			.break()
 			.pause(1)
@@ -293,6 +296,8 @@ export default {
 			})
 
 			.type('&nbsp&nbsp&nbsp&nbsp<')
+
+		// line 3
 			.type('div class=\'bg-sky-600 px-2\'>1<')
 			.type('/div>')
 			.break()
@@ -307,6 +312,8 @@ export default {
 			})
 
 			.type('&nbsp&nbsp&nbsp&nbsp<')
+
+		// line 4
 			.type('div class=\'bg-rose-600 px-2\'>2<')
 			.type('/div>')
 			.break()
@@ -321,6 +328,8 @@ export default {
 			})
 
 			.type('&nbsp&nbsp<')
+
+		// line 5
 			.type('/div>')
 			.break()
 			.pause(1)
@@ -334,6 +343,7 @@ export default {
 			})
 
 			.type('&nbsp&nbsp<')
+		// line 6
 			.type('div class=\'flex flex-row gap-4\'>')
 			.break()
 			.pause(1)
@@ -347,6 +357,7 @@ export default {
 			})
 
 			.type('&nbsp&nbsp&nbsp&nbsp<')
+		// line 7
 			.type('div class=\'bg-lime-600 px-2\'>1<')
 			.type('/div>')
 			.break()
@@ -361,6 +372,7 @@ export default {
 			})
 
 			.type('&nbsp&nbsp&nbsp&nbsp<')
+		// line 8
 			.type('div class=\'bg-teal-600 px-2\'>2<')
 			.type('/div>')
 			.break()
@@ -375,6 +387,7 @@ export default {
 			})
 
 			.type('&nbsp&nbsp<')
+		// line 9
 			.type('/div>')
 			.break()
 			.pause(1)
@@ -388,6 +401,7 @@ export default {
 			})
 
 			.type('<')
+		// line 10
 			.type('/div>')
 			.pause(1)
 			.exec(async () => {
@@ -400,6 +414,7 @@ export default {
 			})
 
 			.pause(1000)
+		// reset
 			.exec(async () => {
 				await new Promise((resolve, reject) => {
 					this.clearCodeBlock();
@@ -412,6 +427,8 @@ export default {
 			.delete()
 			.pause(1000)
 			.type('<')
+		// second phase
+		// line 1
 			.type('lable> Email: <')
 			.type('/lable>')
 			.break()
@@ -426,6 +443,7 @@ export default {
 			})
 
 			.type('<')
+		// line 2
 			.type('input placeholder=\'email\' class=\'p-1 w-20\'>', { speed: 50 })
 			.pause(1)
 			.exec(async () => {
@@ -458,50 +476,50 @@ export default {
 			})
 			.pause(2000)
 			.go();
-	},
+	}
 };
 </script>
 
 <style>
-#render input {
-  @apply w-20 rounded-lg border-2 border-pink-500;
-}
+  #render input {
+    @apply w-20 rounded-lg border-2 border-pink-500;
+  }
 
-.rendered-contents * {
-  animation: fadeIn;
-  animation-duration: 1s;
-}
+  .rendered-contents * {
+    animation: fadeIn;
+    animation-duration: 1s;
+  }
 
-.rem-rendered-contents * {
-  animation: fadeOut;
-  animation-duration: 1s;
-}
+  .rem-rendered-contents * {
+    animation: fadeOut;
+    animation-duration: 1s;
+  }
 
-.highlight {
-  color: var(--text-highlight);
-  font-weight: bold;
-}
+  .highlight {
+    color: var(--text-highlight);
+    font-weight: bold;
+  }
 
-.code-block-lines {
-  color: var(--text);
-  background-color: var(--text-highlight-2);
-}
+  .code-block-lines {
+    color: var(--text);
+    background-color: var(--text-highlight-2);
+  }
 
-.code-block-terminal {
-  margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
-  border-radius: 50%;
-}
+  .code-block-terminal {
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+  }
 
-#demo .html-tag {
-  color: var(--text-highlight-2);
-}
+  #demo .html-tag {
+    color: var(--text-highlight-2);
+  }
 
-#demo .html-attribute {
-  color: var(--text-highlight);
-}
+  #demo .html-attribute {
+    color: var(--text-highlight);
+  }
 
-#demo .html-class {
-  color: var(--text-highlight-2);
-}
+  #demo .html-class {
+    color: var(--text-highlight-2);
+  }
 </style>
