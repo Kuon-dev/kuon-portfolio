@@ -43,7 +43,9 @@
             />
           </div>
           <div class="code-block-lines flex h-[0.05rem] w-full" />
-          <div class="flex flex-row mt-3 leading-4 md:leading-6">
+          <div
+            class="flex flex-row mt-3 leading-4 md:leading-6 overflow-x-scroll"
+          >
             <!-- number line -->
             <div>
               <div
@@ -59,7 +61,7 @@
               class="code-block-lines min-h-[10rem] w-[0.05rem] mx-2 sm:mx-3 flex selector leading-4 md:leading-6"
             />
             <!-- contents to render -->
-            <code id="demo" class="mr-10" ref="textField" />
+            <code id="demo" class="" ref="textField" />
           </div>
         </div>
 
@@ -131,9 +133,7 @@ export default {
 		onMounted(() => {
 			window.Prism = window.Prism || {};
 			window.Prism.manual = true;
-			setTimeout(() => {
-				Prism.highlightAll();
-			}, 5000);
+			setTimeout(() => {}, 5000);
 		});
 
 		return {
@@ -509,6 +509,10 @@ export default {
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
     border-radius: 50%;
+  }
+
+  #demo {
+    overflow-x: scroll;
   }
 
   #demo .html-tag {
