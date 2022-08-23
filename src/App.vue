@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="3xl:px-[5rem] 4xl:px-[10rem] 5xl:px-[20rem] 6xl:px-[50rem] 7xl:px-[100rem] 8xl:px-[150rem]"
-    ref="baseModel"
-  >
+  <div ref="baseModel">
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
       :class="
@@ -16,7 +13,10 @@
         @updateWindowSize="setWindowWidth($event)"
         v-show="isThemeLoaded"
       />
-      <ThreeJS v-if="isThemeLoaded && currentRouteName !== 'ngl'" />
+      <ThreeJS
+        v-if="isThemeLoaded && currentRouteName !== 'ngl'"
+        :padding-value="paddingValue"
+      />
       <div
         class="h-48 w-48"
         v-else-if="isThemeLoaded && currentRouteName === 'ngl'"
@@ -106,7 +106,6 @@ setDefaultTheme();
 onMounted(() => {
 	setTimeout(() => {
 		const { classList } = baseContainer.value;
-		// classList.remove('animate__animated ')
 	}, 2500);
 });
 </script>

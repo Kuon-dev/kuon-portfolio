@@ -1,36 +1,41 @@
 <template>
-  <div
-    class="divCenter pt-20 8xl:ml-[-70rem] 7xl:ml-[-55rem] 6xl:ml-[-20rem] 5xl:ml-[-10rem] 4xl:ml-[-5rem] 3xl:ml-[-2rem] xl:mr-[40rem] lg:mr-[27rem] md:mr-[15rem] sm:ml-[0rem] ml-[4rem] flex flex-col w-full"
-  >
+  <div class="divCenter pt-20">
     <!-- <div id="loading" class="divCenter w-full mt-[15rem] animate-spin"></div> -->
-    <div id="threejs-container" class="mr-[10rem] 2xl:mr-[20rem] hidden"></div>
+    <div
+      id="threejs-container"
+      class=""
+      :style="
+        windowWidth < 1280
+          ? null
+          : {
+              'padding-left': paddingValue - 50 + 'px',
+              'padding-right': paddingValue - 50 + 'px'
+            }
+      "
+    />
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+  import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+  import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 
-/* eslint-enable */
+  /* eslint-enable */
 export default {
+	props: {
+		paddingValue: {
+			type: Number,
+			default: 0
+		}
+	},
 	data() {
 		return {
-			hasUnintendedBehaviors: false,
+			hasUnintendedBehaviors: false
 		};
-	},
-	methods: {
-		// prompt resize on reload
-		ThreeJS_resize() {
-			const width = window.innerWidth / 2;
-			const height = window.innerHeight / 2;
-			camera.aspect = window.innerWidth / window.innerHeight;
-			camera.updateProjectionMatrix();
-			renderer.setSize(width, height);
-		},
 	},
 	mounted() {
 		let isInDesktop = window.innerWidth > 1148;
@@ -174,23 +179,29 @@ export default {
 		// 		50);
 		// 	}
 		// };
-	},
+	}
 };
 </script>
 
-<style>
-#threejs-container {
-  width: 50%;
-  height: 50%;
-  display: block;
-}
+<style scoped>
+  #threejs-container {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
 
-#loading {
-  border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 10px solid var(--text); /* Blue */
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: spin 1s linear infinite;
-}
+  #threejs-container > canvas {
+    display: inline;
+  }
+
+  #loading {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid var(--text); /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+  }
 </style>
