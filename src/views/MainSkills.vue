@@ -10,9 +10,9 @@
         <br />
         <p class="lg:text-lg text-sm text-justify leading-6">
           &nbsp;&nbsp;&nbsp;&nbsp; Aaron is a full-stacked developer focused on
-          VueJS and PHP Laravel. He also possess soft skills to further enhance
-          himself as a web developer with skills such as communication skills,
-          creativity, problem solving, and adaptability.
+          <strong> VueJS and PHP Laravel </strong>. He also possess soft skills
+          to further enhance himself as a web developer with skills such as
+          communication skills, creativity, problem solving, and adaptability.
         </p>
       </div>
       <br />
@@ -44,7 +44,7 @@
           </div>
           <div class="code-block-lines flex h-[0.05rem] w-full" />
           <div
-            class="flex flex-row mt-3 leading-4 md:leading-6 overflow-x-scroll"
+            class="flex flex-row mt-3 leading-4 md:leading-6 overflow-x-scroll relative"
           >
             <!-- number line -->
             <div>
@@ -61,7 +61,9 @@
               class="code-block-lines min-h-[10rem] w-[0.05rem] mx-2 sm:mx-3 flex selector leading-4 md:leading-6"
             />
             <!-- contents to render -->
-            <code id="demo" class="" ref="textField" />
+            <div>
+              <code id="demo" class="" ref="textField" />
+            </div>
           </div>
         </div>
 
@@ -481,6 +483,20 @@ export default {
 </script>
 
 <style>
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--text-highlight-2);
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
   #render input {
     @apply w-20 rounded-lg border-2 border-pink-500;
   }
@@ -509,10 +525,13 @@ export default {
     margin-bottom: 0.5rem;
     margin-right: 0.5rem;
     border-radius: 50%;
+    display: block;
   }
 
   #demo {
-    overflow-x: scroll;
+    white-space: nowrap;
+    position: absolute;
+    display: block;
   }
 
   #demo .html-tag {
