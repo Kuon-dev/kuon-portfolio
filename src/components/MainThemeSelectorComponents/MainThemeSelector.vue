@@ -16,6 +16,7 @@
       >
         <div
           class="flex items-start justify-center min-h-screen pt-24 text-center"
+          ref="container"
         >
           <div
             class="overlay-bg acrlyic rounded-lg text-left overflow-hidden shadow-xl w-10/12 sm:w-1/2 overflow-y-auto"
@@ -30,26 +31,28 @@
 
 <script setup>
 /* eslint-disable */
-import CardComponent from './MainThemeCardComponent.vue';
-import { computed, ref } from 'vue';
+  import CardComponent from './MainThemeCardComponent.vue';
+  // import { ref, onMounted } from 'vue';
 
-const props = defineProps({
-  isShowingThemeOverlay: {
-    type: Boolean,
-    default: false,
-  },
-});
+  const props = defineProps({
+    isShowingThemeOverlay: {
+      type: Boolean,
+      default: false
+    }
+  });
 
-const emit = defineEmits(['closeOverlay']);
-const closeThemeOverlay = (e) => {
-  if (e.target.classList.contains('min-h-screen')) emit('closeOverlay');
-};
-/* eslint-enable */
+  const emit = defineEmits(['closeOverlay']);
+  const closeThemeOverlay = (e) => {
+    // only close the overlay when user clicks outside of the overlay
+    if (e.target.classList.contains('min-h-screen')) emit('closeOverlay');
+  };
+
+  /* eslint-enable */
 </script>
 
 <style>
-.overlay-bg {
-  background-color: var(--bg);
-  color: var(--text);
-}
+  .overlay-bg {
+    background-color: var(--bg);
+    color: var(--text);
+  }
 </style>
