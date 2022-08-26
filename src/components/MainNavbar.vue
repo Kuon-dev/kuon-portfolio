@@ -6,7 +6,7 @@
 
       <div>
         <h1 class="text-4xl font-bold headers">
-          <router-link to="/" @click="Scroll_Top">Aaron</router-link>
+          <router-link to="/" @click="scrollTop">Aaron</router-link>
         </h1>
       </div>
       <div class="text-2xl inline-block px-10 pt-[0.4rem]">
@@ -17,7 +17,7 @@
             :key="index"
           >
             <button>
-              <router-link :to="value.route" @click="Scroll_Top">{{
+              <router-link :to="value.route" @click="scrollTop">{{
                 value.title
               }}</router-link>
             </button>
@@ -43,7 +43,11 @@
     <div class="2xl:hidden flex flex-row py-3 items-center">
       <div>
         <h1 class="text-3xl font-bold sm:-ml-[0px]">
+<<<<<<< HEAD
           <router-link to="/" @click="Scroll_Top" class="scroll-smooth">
+=======
+          <router-link to="/" @click="scrollTop" class="scroll-smooth">
+>>>>>>> 359feec (fix: scroll top not working)
             Aaron
           </router-link>
         </h1>
@@ -129,11 +133,21 @@ export default {
 			mobileDropdownNavigation.value = false;
 		};
 
+		const scrollTop = () => {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		};
+
 		return {
 			webRoutes,
 			mobileDropdownNavigation,
 			showDropdownNavigation,
+<<<<<<< HEAD
 			hideDropdownNavigation
+=======
+			hideDropdownNavigation,
+			scrollTop,
+>>>>>>> 359feec (fix: scroll top not working)
 		};
 	},
 
