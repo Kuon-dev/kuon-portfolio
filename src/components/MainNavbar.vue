@@ -43,11 +43,7 @@
     <div class="2xl:hidden flex flex-row py-3 items-center">
       <div>
         <h1 class="text-3xl font-bold sm:-ml-[0px]">
-<<<<<<< HEAD
-          <router-link to="/" @click="Scroll_Top" class="scroll-smooth">
-=======
           <router-link to="/" @click="scrollTop" class="scroll-smooth">
->>>>>>> 359feec (fix: scroll top not working)
             Aaron
           </router-link>
         </h1>
@@ -142,12 +138,8 @@ export default {
 			webRoutes,
 			mobileDropdownNavigation,
 			showDropdownNavigation,
-<<<<<<< HEAD
-			hideDropdownNavigation
-=======
 			hideDropdownNavigation,
-			scrollTop,
->>>>>>> 359feec (fix: scroll top not working)
+			scrollTop
 		};
 	},
 
